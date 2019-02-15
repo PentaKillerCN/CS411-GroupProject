@@ -1,0 +1,17 @@
+Primary Idea:
+	With a personal profile, users can make their own calendars. According to the different important levels of
+  upcoming events on the calendar, our planner will give users suggestions about how to plan their day before
+  these upcoming events. With help from different APIs such as chrome and google calendar, our planner can prompt
+  a message box during certain time period to help users make time management (with users’ approval). For example,
+  if there is an upcoming exam, our planner will prompt a message box saying “you need to focus on your exam preparation”
+  or something.
+
+Secondary Idea:
+	On some important dates, our website recommend different types of playlists, dresses, and places for users.
+  For example, on Valentine’s day, users can go to our website and find love songs they would like to listen to, which
+  can be romantic or sad. Also, if a user wants to confess his/her love, he/she can look up our website for places
+  like restaurants that suit for dating and dress that is appropriate to go to that place. Or, if a user breaks up
+  on Valentine’s day, he/she can find some places like bars on our website. On normal days, our website can also recommend
+  different types of playlists, dresses, and places for users. For example, if it is a sunny day, our website would
+  recommend some happy songs and some places like beach for outdoor activities or parties. Or, if it is a rainy day,
+  our website would recommend some sad songs.
