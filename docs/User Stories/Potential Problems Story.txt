@@ -1,0 +1,2 @@
+If I have the app set to block my websites, but it is blocking something I need immediately, I can turn it off from the settings. I can also choose to leave it off until I turn it back on, or instead for any set amount of time.
+	If the planner thinks I have deadlines coming up, but it’s wrong, I can set it to recognize only specific words (e.g. test) in my calendar, and mark those as important deadlines.
