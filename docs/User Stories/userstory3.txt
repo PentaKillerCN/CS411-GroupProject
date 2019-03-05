@@ -1,0 +1,23 @@
+//Teamates 
+
+//for creating new branch
+git checkout -b BRANCHNAME
+
+//for switching branch 
+git checkout BRANCHNAME
+
+//work on changes 
+//create a branch first and then switch to that branch before working on changes
+
+//after finish working on changes 
+git add .
+git commit -m "YOUR CHANGES"
+git push origin BRANCHNAME
+
+
+//after Ziang merged, everyone needs to do:
+git checkout master
+git pull
+//Now you have the most recent folder
+
+//Every new feature should start a new branch
