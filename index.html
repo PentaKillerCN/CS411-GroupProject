@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Google Calendar API Quickstart</title>
+    <title>Planner Prototype</title>
     <meta charset="utf-8" />
   </head>
   <body>
-    <p>Google Calendar API Quickstart</p>
-
     <!--Add buttons to initiate auth sequence and sign out-->
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
@@ -73,7 +71,7 @@
         if (isSignedIn) {
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
-          listUpcomingEvents("");
+          <!--listUpcomingEvents(""); -->
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
@@ -106,7 +104,9 @@
             pre.appendChild(textContent);
         
       }
-      
+      /**
+      *This function is called when we run a search, to clear previous results. 
+      */
       function clearList(){
             var pre = document.getElementById('content');
             pre.innerHTML=""
@@ -134,6 +134,7 @@
             for (i = 0; i < events.length; i++) {
               if (i == 0){
                 clearList();
+                appendPre('Events matching query:');
               }
               var event = events[i];
               var when = event.start.dateTime;
@@ -143,7 +144,8 @@
               appendPre(event.summary + ' (' + when + ')');
             }
           } else {
-            appendPre('No upcoming events found.');
+            clearList();
+            appendPre('No events found.');
           }
         });
       }
