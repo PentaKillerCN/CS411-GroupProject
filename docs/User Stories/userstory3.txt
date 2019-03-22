@@ -1,0 +1,7 @@
+User Story 2
+As a logged-in user, I have an upcoming exam in next week so I decide to create an event for the exam on the calendar. After I enter basic information about the exam, a marked event on my calendar on the website is created. 
+For possible obstacles, refer to the “Potential Problems Story”.
+
+Potential Problems Story
+	1.	when there is any information( like when and where is the exam) missing, message box will also pop up and user will not be able to create the event.  
+	2.	I need to define the important level of the exam (quiz, midterm or final….). Due to different important levels, our website will decide the amount of time it will block the website and how often will the message box to pop up to kindly remind the user to go back to study. 
