@@ -5,4 +5,5 @@ block content
   form(method='POST' action='/')
     input(type='text', placeholder='Search for an event' name='searchText')
     Button(type='Submit') Search
-  p #{events}
+  h2 The following schedule includes up to 10 upcoming events related to your search:
+  pre #{events}

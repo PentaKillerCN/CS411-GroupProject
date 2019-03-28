@@ -94,13 +94,11 @@ function listEvents(auth, callback) {
       console.log('Upcoming 10 events:');
       events.map((event, i) => {
         const start = event.start.dateTime || event.start.date;
-		eventsString+="\n";
-		eventsString += `${start} - ${event.summary}`;
-        //console.log(`${start} - ${event.summary}`);
-		
+        eventsString += `${start} - ${event.summary}`;
+        eventsString += `\n`;
+        //console.log(`${start} - ${event.summary}`);	
       });
-	  sendResults();
-	  
+	    sendResults();
     } else {
       console.log('No upcoming events found.');
     }
@@ -218,16 +216,15 @@ function listEvents(auth, callback, q) {
       console.log('Upcoming 10 events:');
       events.map((event, i) => {
         const start = event.start.dateTime || event.start.date;
-		eventsString+="\n";
-		eventsString += `${start} - ${event.summary}`;
-        //console.log(`${start} - ${event.summary}`);
-		
+        eventsString += `${start} - ${event.summary}`;
+        eventsString += '\n';
+        //console.log(`${start} - ${event.summary}`);		
       });
-	  sendResults();
+	    sendResults();
 	  
     } else {
       eventsString = 'No upcoming events found.';
-	  sendResults();
+	    sendResults();
     }
   });
 
