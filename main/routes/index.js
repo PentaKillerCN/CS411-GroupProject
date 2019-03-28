@@ -202,6 +202,7 @@ function getAccessToken(oAuth2Client, callback) {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function listEvents(auth, callback, q) {
+	eventsString = "";
   const calendar = google.calendar({version: 'v3', auth});
   calendar.events.list({
     calendarId: 'primary',
@@ -225,7 +226,8 @@ function listEvents(auth, callback, q) {
 	  sendResults();
 	  
     } else {
-      console.log('No upcoming events found.');
+      eventsString = 'No upcoming events found.';
+	  sendResults();
     }
   });
 
