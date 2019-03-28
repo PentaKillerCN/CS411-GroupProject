@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1 Upcoming Events:
-  form(method='GET' action='/')
-  input(type='text', placeholder='Search for an event' id='searchText', onClick=listUpcomingEvents(document.getElementById('searchText').value))
-  Button(type='Submit') Search
+  form(method='POST' action='/')
+    input(type='text', placeholder='Search for an event' name='searchText')
+    Button(type='Submit') Search
   p #{events}
