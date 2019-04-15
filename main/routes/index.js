@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var eventsString = "";
+var blocked = []
 
 
 
@@ -248,5 +249,10 @@ router.post('/add', function(req, res, next) {
     res.render('blockedSites');
 });
 
+router.post('/update', function(req, res, next) {
+    blocked.push(req.body.blockText)
+
+    res.render('index', {events: eventsString});
+});
 
 module.exports = router;
