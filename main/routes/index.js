@@ -255,10 +255,10 @@ router.post('/add', function(req, res, next) {
     res.render('blockedSites');
 });
 
-//this function is run when the user adds a new site to their blocking list - will be removed when extension is put in place
+//this function is run when the user adds a new site to their blocking list
 router.post('/update', function(req, res, next) {
     
-
+    //retrieve mongo connection
     connection.connectToServer( function( err ) {
         var db = connection.getDb();
         
