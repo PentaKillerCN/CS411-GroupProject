@@ -282,4 +282,8 @@ router.post('/update', function(req, res, next) {
     res.render('index', {events: eventsString});
 });
 
+router.post('/test', function(req, res, next){
+    res.render('test');   
+});
+
 module.exports = router;
