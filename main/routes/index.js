@@ -6,8 +6,8 @@ var db = connection.thedb;
 
 var router = express.Router();
 
+
 var eventsString = "";
-var blocked = []
 
 
 
@@ -257,30 +257,29 @@ router.post('/add', function(req, res, next) {
 
 //this function is run when the user adds a new site to their blocking list - will be removed when extension is put in place
 router.post('/update', function(req, res, next) {
-    blocked.push(req.body.blockText);
-    res.send('db: ' + db)
-    var collection = db.collection('users');
     
-    collection.insertOne({ 'title': req.body.blockText },
-        function(err, response) {
-            if(error){
-                
-            }else{
-                res.send('inserted record', response.ops[0]);
-            }
-            
+
+    connection.connectToServer( function( err ) {
+        var db = connection.getDb();
+        
+        //insert the new site to mongo
+        var myobj = { name: req.body.blockText };
+        db.collection("users").insertOne(myobj, function(err, res) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            dofind();
         });
         
-    //var myData = new User(req.body);
-    //res.send(myData);
-    //var myData = "testing";
-    //myData.save().then(item => {
-     //   res.send("item saved to database");
-    //}).catch(err => {
-     //   res.status(400).send("unable to save to database");
-    //});
-
-    //res.render('index', {events: eventsString});
+        //temporary function to test insertions
+        function dofind(){
+           db.collection("users").findOne({}, function(err, result) {
+                if (err) throw err;
+                console.log(result.name);
+            });
+        }
+    });
+    
+    res.render('index', {events: eventsString});
 });
 
 module.exports = router;

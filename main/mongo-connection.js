@@ -4,19 +4,42 @@ const assert = require('assert');
 const url = 'mongodb://localhost:27017';
 const dbName = 'myproject';
  
-var db = "hello"; //not getting modified bc of asynchronicity. fix this.
+var _db;
 
-MongoClient.connect(url, function (err, client) {
+
+//export the db instance for use in other files
+module.exports = {
+
+  connectToServer: function( callback ) {
+    MongoClient.connect( "mongodb://localhost:27017/myproject", function( err, db ) {
+      _db = db;
+      return callback( err );
+    } );
+  },
+
+  getDb: function() {
+    return _db;
+  }
+};
+
+
+
+
+
+/* MongoClient.connect(url, function (err, client) {
   assert.equal(null, err);
   console.log("Connected successfully to server");
  
   db = client.db(dbName);
-  exportit(db);
- 
+  callback(db);
+  client.close();
 });
 
-function exportit(db){
-    module.exports = {
-    thedb: db
-}
-}
+
+module.exports = function(cb){
+  if(typeof db != 'undefined' ){
+    cb(db)
+  }else{
+    callback = cb
+  }
+} */
