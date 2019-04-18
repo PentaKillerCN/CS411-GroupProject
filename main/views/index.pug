@@ -1,7 +1,10 @@
 doctype html
 head
-  link(rel='stylesheet', type='text/css', href='/public/stylesheets/style.css')
-h1(align='center') Smart Shield
+  link(rel='stylesheet', type='text/css', href='stylesheets/style.css')
+h1(align='center', aria-label='ABC')
+  span A
+  span B
+  span C
 p(align='right') To keep on track and block sites, add the smart planner extension.
 form(method='POST', action='/add', align='right')
   button(type='Submit') Add extension
@@ -10,6 +13,10 @@ form(method='POST', action='/')
   input(type='text', placeholder='Search for an event', name='searchText')
   button(type='Submit') Search
 pre.
+  
+a(href='/test.pug') Test
+
+
   
   
 
