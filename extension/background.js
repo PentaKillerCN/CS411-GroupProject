@@ -1,6 +1,7 @@
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
         localStorage.setItem('blocks', JSON.stringify({urls: ['*://www.evil.com/*']}));
+        addListener();
     }
 });
 
@@ -11,25 +12,27 @@ chrome.runtime.onMessage.addListener(
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
-                localStorage.setItem('blocks', '*://www.yahoo.com/*'); //fix async. talk to perry?
+                localStorage.setItem('blocks', 'urls: *://www.yahoo.com/*'); //fix async. switch to chrome sync storage
                 //request.newSite gives the message value
+                addListener();
                 
   });
 
 
 var blockedUrls = function () {
     if (localStorage.blocks) {
-        return JSON.parse(localStorage.blocks).urls
+        return JSON.parse(localStorage.blocks).urls //this is breaking. but it made it here!!
     } else {
         return ['*://www.facebook.com/*'];
     }
 }
 
-
-chrome.webRequest.onBeforeRequest.addListener(
-  function(){ return {cancel: true}; },
-  {
-    urls: blockedUrls()
-  },
-  ["blocking"]
-);
+function addListener(){
+    chrome.webRequest.onBeforeRequest.addListener(
+      function(){ return {cancel: true}; },
+      {
+        urls: blockedUrls()
+      },
+      ["blocking"]
+    );
+}
