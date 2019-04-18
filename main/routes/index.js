@@ -2,8 +2,7 @@ var express = require('express');
 
 // get mongo connection
 var connection = require('../mongo-connection.js');
-var db = connection.db;
-var User = connection.user;
+var db = connection.thedb;
 
 var router = express.Router();
 
@@ -258,14 +257,28 @@ router.post('/add', function(req, res, next) {
 
 //this function is run when the user adds a new site to their blocking list - will be removed when extension is put in place
 router.post('/update', function(req, res, next) {
-    blocked.push(req.body.blockText)
-    var myData = new User(req.body);
+    blocked.push(req.body.blockText);
+    res.send('db: ' + db)
+    var collection = db.collection('users');
+    
+    collection.insertOne({ 'title': req.body.blockText },
+        function(err, response) {
+            if(error){
+                
+            }else{
+                res.send('inserted record', response.ops[0]);
+            }
+            
+        });
+        
+    //var myData = new User(req.body);
+    //res.send(myData);
     //var myData = "testing";
-    myData.save().then(item => {
-        res.send("item saved to database");
-    }).catch(err => {
-        res.status(400).send("unable to save to database");
-    });
+    //myData.save().then(item => {
+     //   res.send("item saved to database");
+    //}).catch(err => {
+     //   res.status(400).send("unable to save to database");
+    //});
 
     //res.render('index', {events: eventsString});
 });

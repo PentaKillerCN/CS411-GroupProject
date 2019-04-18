@@ -1,16 +1,22 @@
-var mongoose = require("mongoose");
+var MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
 
-// set up mongo
-mongoose.Promise = global.Promise;
-db = mongoose.connect("mongodb://localhost:27017/users");
+const url = 'mongodb://localhost:27017';
+const dbName = 'myproject';
+ 
+var db = "hello"; //not getting modified bc of asynchronicity. fix this.
 
-var usersSchema = new mongoose.Schema({
- firstName: String,
- blockedSites: String
+MongoClient.connect(url, function (err, client) {
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+ 
+  db = client.db(dbName);
+  exportit(db);
+ 
 });
 
-var User = mongoose.model("User", usersSchema);
-//-------------
-
-exports.db = db;
-exports.user = User;
+function exportit(db){
+    module.exports = {
+    thedb: db
+}
+}
