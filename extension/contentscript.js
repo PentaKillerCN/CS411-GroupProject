@@ -16,7 +16,3 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-function addtoBlocks(){
-    console.log("works!");
-}
-

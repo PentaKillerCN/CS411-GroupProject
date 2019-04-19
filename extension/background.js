@@ -12,21 +12,23 @@ chrome.runtime.onMessage.addListener(
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
-                localStorage.setItem('blocks', 'urls: *://www.yahoo.com/*'); //fix async. switch to chrome sync storage
+                localStorage.setItem('block', JSON.stringify({urls: ['*://www.yahoo.com/*']})); //switch to chrome sync storage
                 //request.newSite gives the message value
                 addListener();
                 
   });
 
-
+//this variable is a list of sites to be blocked, and is updated when addListener is called
 var blockedUrls = function () {
-    if (localStorage.blocks) {
-        return JSON.parse(localStorage.blocks).urls //this is breaking. but it made it here!!
+    if (localStorage.block) {
+        var jobj = JSON.parse(localStorage.block);
+        return [jobj['urls'][0]];
     } else {
         return ['*://www.facebook.com/*'];
     }
 }
 
+//function to update the list of blocked sites whenever one is added
 function addListener(){
     chrome.webRequest.onBeforeRequest.addListener(
       function(){ return {cancel: true}; },
