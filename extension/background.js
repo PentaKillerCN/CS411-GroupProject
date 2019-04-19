@@ -1,6 +1,5 @@
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
-        localStorage.setItem('blocks', JSON.stringify({urls: ['*://www.evil.com/*']}));
         addListener();
     }
 });
@@ -12,7 +11,7 @@ chrome.runtime.onMessage.addListener(
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
-                localStorage.setItem('block', JSON.stringify({urls: ['*://www.yahoo.com/*']})); //switch to chrome sync storage
+                localStorage.setItem('block', JSON.stringify({urls: ['*://www.' + request.newSite +'/*']})); //switch to chrome sync storage
                 //request.newSite gives the message value
                 addListener();
                 
@@ -22,6 +21,7 @@ chrome.runtime.onMessage.addListener(
 var blockedUrls = function () {
     if (localStorage.block) {
         var jobj = JSON.parse(localStorage.block);
+        console.log(jobj['urls'][0]);
         return [jobj['urls'][0]];
     } else {
         return ['*://www.facebook.com/*'];

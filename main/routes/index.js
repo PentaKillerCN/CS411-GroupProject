@@ -275,7 +275,7 @@ router.post('/update', function(req, res, next) {
                 //console.log(result.name);
                 result.each(function(err, item){
                 if(item == null) {
-                        db.close(); // use this line if you ever have errors abt "cant read collection property of undefined"
+                        db.close(); // use this line if you ever have errors abt "cant read collection property of undefined" or start mongod
                         return;
                 }else{
                     console.log(item.name);
