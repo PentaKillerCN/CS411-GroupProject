@@ -4,6 +4,9 @@ chrome.runtime.onInstalled.addListener(function(details){
     }
 });
 
+//todo: will have to get the block list from the table displayed on the page dom lol
+//and actually iterate over it rather than just get the one item
+
 
 //listener to listen for messages (new sites) from contentscript.js
 chrome.runtime.onMessage.addListener(

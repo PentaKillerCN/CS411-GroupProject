@@ -272,7 +272,6 @@ router.post('/update', function(req, res, next) {
         function dofind(){
            db.collection("users").find({}, function(err, result) {
                 if (err) throw err;
-                //console.log(result.name);
                 result.each(function(err, item){
                 if(item == null) {
                         db.close(); // use this line if you ever have errors abt "cant read collection property of undefined" or start mongod
