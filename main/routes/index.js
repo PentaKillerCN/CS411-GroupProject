@@ -285,5 +285,8 @@ router.post('/update', function(req, res, next) {
 router.post('/test', function(req, res, next){
     res.render('test');   
 });
+router.post('/main', function(req, res, next){
+    res.render('main');   
+});
 
 module.exports = router;
