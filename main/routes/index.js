@@ -5,13 +5,92 @@ var connection = require('../mongo-connection.js');
 var db = connection.thedb;
 
 var router = express.Router();
+var User = require('../models/user');
 
 var eventsString = "";
 
+// GET /logout
+router.get('/logout', function(req, res, next) {
+  if (req.session) {
+    // delete session object
+    req.session.destroy(function(err) {
+      if(err) {
+        return next(err);
+      } else {
+        return res.redirect('/');
+      }
+    });
+  }
+});
+//Get /login
+router.get('/login', function(req,res, next) {
+  return res.render('login', {title: 'Log In'});
+});
+// POST /login
+router.post('/login', function(req, res, next) {
+  if (req.body.email && req.body.password) {
+    User.authenticate(req.body.email, req.body.password, function (error, user) {
+      if (error || !user) {
+        var err = new Error('Wrong email or password.');
+        err.status = 401;
+        return next(err);
+      }  else {
+        req.session.userId = user._id;
+        return res.redirect('/profile');
+      }
+    });
+  } else {
+    var err = new Error('Email and password are required.');
+    err.status = 401;
+    return next(err);
+  }
+});
+
+//Get /register
+router.get('/register', function(req,res,next){
+  return res.render('register', {title: 'Sign Up'});
+});
+//Post /register
+router.post('/register', function(req,res,next){
+  if (req.body.email &&
+    req.body.name &&
+    req.body.favoriteBook &&
+    req.body.password &&
+    req.body.confirmPassword) {
+
+      // confirm that user typed same password twice
+      if (req.body.password !== req.body.confirmPassword) {
+        var err = new Error('Passwords do not match.');
+        err.status = 400;
+        return next(err);
+      }
+
+      // create object with form input
+      var userData = {
+        email: req.body.email,
+        name: req.body.name,
+        password: req.body.password
+      };
+
+      // use schema's `create` method to insert document into Mongo
+      User.create(userData, function (error, user) {
+        if (error) {
+          return next(error);
+        } else {
+          req.session.userId = user._id;
+          return res.redirect('/profile');
+        }
+      });
+    } else {
+      var err = new Error('All fields required.');
+      err.status = 400;
+      return next(err);
+    }
+})
 
 /* GET*/
 router.get('/', function(req, res, next) {
-	
+
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
@@ -101,7 +180,7 @@ function listEvents(auth, callback) {
         const start = event.start.dateTime || event.start.date;
         eventsString += `${start} - ${event.summary}`;
         eventsString += `\n`;
-        //console.log(`${start} - ${event.summary}`);	
+        //console.log(`${start} - ${event.summary}`);
       });
 	    sendResults();
     } else {
@@ -112,16 +191,16 @@ function listEvents(auth, callback) {
 }
 
 function listUpcomingEvents(auth, q){
-	
-	
+
+
 }
-  
+
   function sendResults(){
 	//console.log("now")
 	res.render('index', { events: eventsString });
   }
-  
-  
+
+
 });
 
 
@@ -129,6 +208,7 @@ function listUpcomingEvents(auth, q){
 
 
 /* POST*/
+
 router.post('/', function(req, res, next) {
 	console.log('success')
 	const fs = require('fs');
@@ -223,10 +303,10 @@ function listEvents(auth, callback, q) {
         const start = event.start.dateTime || event.start.date;
         eventsString += `${start} - ${event.summary}`;
         eventsString += '\n';
-        //console.log(`${start} - ${event.summary}`);		
+        //console.log(`${start} - ${event.summary}`);
       });
 	    sendResults();
-	  
+
     } else {
       eventsString = 'No upcoming events found.';
 	    sendResults();
@@ -237,9 +317,9 @@ function listEvents(auth, callback, q) {
 
 function listUpcomingEvents(auth, q){
 	listEvents(auth, sendResults,q);
-	
+
 }
-  
+
 
 function sendResults(){
 	//console.log("now")
@@ -255,11 +335,11 @@ router.post('/add', function(req, res, next) {
 
 //this function is run when the user adds a new site to their blocking list
 router.post('/update', function(req, res, next) {
-    
+
     //retrieve mongo connection
     connection.connectToServer( function( err ) {
         var db = connection.getDb();
-        
+
         //insert the new site to mongo
         var myobj = { name: req.body.blockText };
         db.collection("users").insertOne(myobj, function(err, res) {
@@ -267,7 +347,7 @@ router.post('/update', function(req, res, next) {
             console.log("1 document inserted");
             dofind();
         });
-        
+
         //temporary function to test insertions
         function dofind(){
            db.collection("users").find({}, function(err, result) {
@@ -284,8 +364,16 @@ router.post('/update', function(req, res, next) {
             });
         }
     });
-    
+
     res.render('index', {events: eventsString});
 });
 
+router.post('/test', function(req, res, next){
+    res.render('test');
+});
+router.post('/main', function(req, res, next){
+    res.render('main');
+});
+
 module.exports = router;
+
