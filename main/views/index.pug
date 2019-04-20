@@ -1,23 +1,20 @@
 doctype html
 head
   link(rel='stylesheet', type='text/css', href='stylesheets/style.css')
-h1(align='center', aria-label='ABC')
-  span A
-  span B
-  span C
-p(align='right') To keep on track and block sites, add the smart planner extension.
-form(method='POST', action='/add', align='right')
-  button(type='Submit') Add extension
-h2 Upcoming Events:
-form(method='POST', action='/')
-  input(type='text', placeholder='Search for an event', name='searchText')
-  button(type='Submit') Search
-pre.
-
-form(method='POST', action='/test')
-  button(type='Submit') Test
-
-
-  
-  
-
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+.mysky
+  video#sky(autoplay='', muted='', loop='')
+    source(src='stylesheets/sky.mp4', type='video/mp4')
+  .container
+    span.logo SMART SHIELD
+  .overlay
+    h1 WELCOME!
+    h2 Ready to Get Started?
+    div(style='width:400px;')
+      div(style='float: left; width: 130px')
+        form(method='post', action='/test')
+          button#myBtn1(type='Submit') LOG IN
+      div(style='float: right; width: 250px')
+        form(method='post', action='/main')
+          button#myBtn1(type='Submit') SIGN UP
+    pre.
