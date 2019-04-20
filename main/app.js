@@ -7,8 +7,15 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var session = require('express-session');
 var app = express();
 
+//use sessions for tracking logins
+app.use(session({
+  secret: 'smart shield loves you',
+  resave: true,
+  saveUninitialized: false
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
