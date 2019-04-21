@@ -1,2 +1,2 @@
-# CS411-GroupProject
-This repository is mainly used to store the group project.
+# Smart Shield
+This is a web app designed to boost productivity by intelligently restricting web activity based on upcoming google calendar events
