@@ -288,4 +288,13 @@ router.post('/update', function(req, res, next) {
     res.render('index', {events: eventsString});
 });
 
+router.post('/tologin', function(req, res, next){
+    res.render('login');
+    //res.render('test');    
+   
+});
+
+router.post('/main', function(req, res, next){
+    res.render('main');   
+});
 module.exports = router;

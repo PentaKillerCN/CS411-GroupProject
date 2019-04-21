@@ -1,13 +1,12 @@
 {
-    "name": "Site Blocker",
+    "name": "Smart Shield",
     "version": "1.0",
-    "description": "Build an Extension!",
+    "description": "Extension for the Smart Shield web app",
     "permissions": ["activeTab", "storage", "webRequest", "webRequestBlocking", "<all_urls>"],
     "background": {
         "scripts": ["background.js"]
     },
-    "page_action": {
-        "default_popup": "popup.html",
+    "browser_action": {
         "default_icon": {
             "16": "images/get_started16.png",
             "32": "images/get_started32.png",
