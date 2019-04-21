@@ -12,11 +12,6 @@ var UserSchema = new mongoose.Schema({
       required: true,
       trim: true
     },
-    favoriteBook: {
-      type: String,
-      required: true,
-      trim: true
-    },
     password: {
       type: String,
       required: true
@@ -24,19 +19,24 @@ var UserSchema = new mongoose.Schema({
 });
 // authenticate input against database documents
 UserSchema.statics.authenticate = function(email, password, callback) {
+    console.log("auth");
   User.findOne({ email: email })
       .exec(function (error, user) {
         if (error) {
+            console.log("one");
           return callback(error);
         } else if ( !user ) {
+          console.log("two");
           var err = new Error('User not found.');
           err.status = 401;
           return callback(err);
         }
         bcrypt.compare(password, user.password , function(error, result) {
           if (result === true) {
+              console.log("three");
             return callback(null, user);
           } else {
+              console.log("four");
             return callback();
           }
         })
