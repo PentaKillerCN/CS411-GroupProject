@@ -5,8 +5,8 @@ var connection = require('../mongo-connection.js');
 var db = connection.thedb;
 
 var router = express.Router();
-
 var User = require('../models/user');
+
 var eventsString = "";
 
 // GET /logout
@@ -93,9 +93,16 @@ router.post('/register', function(req,res,next){
           err.status = 400;
           return next(err);
         }
+      });
+    } else {
+      var err = new Error('All fields required.');
+      err.status = 400;
+      return next(err);
+    }
+})
+
     });
 });
-
 
 
 /* GET*/
@@ -342,10 +349,10 @@ router.post('/add', function(req, res, next) {
     res.render('blockedSites');
 });
 
-//this function is run when the user adds a new site to their blocking list - will be removed when extension is put in place
+//this function is run when the user adds a new site to their blocking list
 router.post('/update', function(req, res, next) {
 
-
+    //retrieve mongo connection
     connection.connectToServer( function( err ) {
         var db = connection.getDb();
 
@@ -360,20 +367,44 @@ router.post('/update', function(req, res, next) {
             if (err) throw err;
             console.log("1 document updated");
         });
+
+        //temporary function to test insertions
+        function dofind(){
+           db.collection("users").find({}, function(err, result) {
+                if (err) throw err;
+                result.each(function(err, item){
+                if(item == null) {
+                        db.close(); // use this line if you ever have errors abt "cant read collection property of undefined" or start mongod
+                        return;
+                }else{
+                    console.log(item.name);
+                    
+                }
+                });
+            });
+        }
         
-        
-        
+
     });
 
     res.render('index', {events: eventsString});
 });
 
+
+router.post('/tologin', function(req, res, next){
+    res.render('login');
+    //res.render('test');    
+   
+});
+
+router.post('/main', function(req, res, next){
+    res.render('main');   
+});
+
 router.post('/test', function(req, res, next){
     res.render('test');
 });
-router.post('/main', function(req, res, next){
-    res.render('main');
-});
+
 
 module.exports = router;
 

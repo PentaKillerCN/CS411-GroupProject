@@ -1,20 +1,21 @@
 doctype html
-head
-  link(rel='stylesheet', type='text/css', href='stylesheets/style.css')
-  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
-.mysky
-  video#sky(autoplay='', muted='', loop='')
-    source(src='stylesheets/sky.mp4', type='video/mp4')
-  .container
-    span.logo SMART SHIELD
-  .overlay
-    h1 WELCOME!
-    h2 Ready to Get Started?
-    div(style='width:400px;')
-      div(style='float: left; width: 130px')
-        form(method='get', action='/login')
-          button#myBtn1(type='Submit') LOG IN
-      div(style='float: right; width: 250px')
-        form(method='get', action='/register')
-          button#myBtn1(type='Submit') SIGN UP
-    pre.
+html(lang='en')
+    head
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+    .mysky
+      video#sky(autoplay='', muted='', loop='')
+        source(src='stylesheets/sky.mp4', type='video/mp4')
+      .container
+        span.logo SMART SHIELD
+      .overlay
+        h1 WELCOME!
+        h2 Ready to Get Started?
+        div(style='width:400px;')
+          div(style='float: left; width: 130px')
+            form(method='post', action='/tologin')
+              button#myBtn1(type='Submit') LOG IN
+          div(style='float: right; width: 250px')
+            form(method='post', action='/main')
+              button#myBtn1(type='Submit') SIGN UP
+        pre.
