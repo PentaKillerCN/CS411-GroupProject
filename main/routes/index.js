@@ -54,7 +54,6 @@ router.get('/register', function(req,res,next){
 router.post('/register', function(req,res,next){
   if (req.body.email &&
     req.body.name &&
-    req.body.favoriteBook &&
     req.body.password &&
     req.body.confirmPassword) {
 
