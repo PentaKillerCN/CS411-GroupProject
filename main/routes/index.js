@@ -78,7 +78,8 @@ router.post('/register', function(req,res,next){
           var userData = {
             email: req.body.email,
             name: req.body.name,
-            password: req.body.password
+            password: req.body.password,
+            sites: ""
           };
           
           //insert document into mongo
@@ -205,7 +206,6 @@ function listUpcomingEvents(auth, q){
 }
 
   function sendResults(){
-	//console.log("now")
 	res.render('index', { events: eventsString });
   }
 
@@ -325,7 +325,7 @@ function listEvents(auth, callback, q) {
 }
 
 function listUpcomingEvents(auth, q){
-	listEvents(auth, sendResults,q);
+	listEvents(auth, sendResults, q);
 
 }
 
@@ -349,21 +349,20 @@ router.post('/update', function(req, res, next) {
     connection.connectToServer( function( err ) {
         var db = connection.getDb();
 
-        //insert the new site to mongo
-        var myobj = { name: req.body.blockText };
-        db.collection("users").insertOne(myobj, function(err, res) {
+        //update the user's mongo document with the new site
+        var oid = connection.getOID(req.session.userId);
+        
+        
+        var query = {_id: oid};
+        var newsites = { $set: {sites: req.body.blockText} }; //change this to some sort of append. just sites + req.body.blockText?
+        console.log(req.body.blockText);
+        db.collection("users").updateOne(query, newsites, function(err, res) {
             if (err) throw err;
-            console.log("1 document inserted");
-            dofind();
+            console.log("1 document updated");
         });
-
-        //temporary function to test insertions
-        function dofind(){
-           db.collection("users").findOne({}, function(err, result) {
-                if (err) throw err;
-                console.log(result.name);
-            });
-        }
+        
+        
+        
     });
 
     res.render('index', {events: eventsString});

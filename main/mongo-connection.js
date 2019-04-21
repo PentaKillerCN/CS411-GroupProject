@@ -1,4 +1,6 @@
+var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
+
 const assert = require('assert');
 
 const url = 'mongodb://localhost:27017';
@@ -10,6 +12,7 @@ var _db;
 //export the db instance for use in other files
 module.exports = {
 
+  //function to connect to the db
   connectToServer: function( callback ) {
     MongoClient.connect( "mongodb://localhost:27017/myproject", function( err, db ) {
       _db = db;
@@ -17,10 +20,17 @@ module.exports = {
     } );
   },
 
+  //db getter
   getDb: function() {
     return _db;
   },
   
+  getOID: function(id){
+        var o_id = new mongo.ObjectID(id);
+        return o_id;  
+  },
+  
+  //function to insert a record into the database
   insertRecord: function(collection, obj){
     _db.collection(collection).insertOne(obj, function(err, res) {
         if (err) throw err;
@@ -29,6 +39,7 @@ module.exports = {
     });
   },
   
+  //function used to authenticate users upon log-in attempt
   authenticate: function(email, pswd, callback){
        var query = { email: email, password:pswd}; //is password a keyword? problem?
        console.log(email);
