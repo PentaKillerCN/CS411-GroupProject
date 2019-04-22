@@ -326,7 +326,7 @@ router.post('/register', function(req,res,next){
 
           // create object with form input
           var userData = {
-            email: req.body.email,
+            email: req.body.email.toLowerCase(),
             name: req.body.name,
             password: req.body.password,
             sites: []
@@ -358,8 +358,10 @@ router.get('/getData', function(req, res, next){
 
   connection.connectToServer(function(err){
     var db = connection.getDb();
-
-    var cursor = db.collection("users").find();
+    var oid = connection.getOID(req.session.userId);    
+    var query = {_id: oid};
+     
+    var cursor = db.collection("users").find(query);
     cursor.forEach(function(doc, err){
       if (err) throw err;
       result.push(doc.sites);
