@@ -55,18 +55,14 @@ router.post('/login', function(req, res, next) {
           if (error || !user) {
             console.log(error);
             console.log(user);
-            var err = new Error('Wrong email or password.');
-            err.status = 401;
-            return next(err);
+            res.render('login', {errors:'Wrong email or password.'});
           }  else {
             req.session.userId = user._id;
             res.render('main');
           }
         });
       } else {
-        var err = new Error('Email and password are required.');
-        err.status = 401;
-        return next(err);
+        res.render('login', {errors:'Email and password are required.'});
       }
     });
 });
