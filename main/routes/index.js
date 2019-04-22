@@ -36,10 +36,10 @@ router.get('/getData', function(req, res, next){
     var cursor = db.collection("users").find();
     cursor.forEach(function(doc, err){
       if (err) throw err;
-      result.push(doc);
+      result.push(doc.sites);
     }, function(){
       db.close();
-      res.render('index', {items:result});
+      res.render('blockedSites', {items:result});
     });
   });
 });
