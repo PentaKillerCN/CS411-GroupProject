@@ -243,9 +243,14 @@ router.post('/removeAll', function(req, res, next) {
     connection.connectToServer( function( err ) {
         var db = connection.getDb();
 
-        db.collection("users").drop(function(err, delOK) {
+        //get the objectid for mongo to identify the correct record
+        var oid = connection.getOID(req.session.userId);
+        var query = {_id: oid};
+
+        var deleteQuery = { $pull: {sites: {} } };
+        db.collection("users").update(query, deleteQuery, function(err, res) {
             if (err) throw err;
-            if (delOK) console.log("Collection deleted");
+            console.log("Collection deleted");
             db.close();
         });
     });
