@@ -408,7 +408,7 @@ router.post('/updateAdd', function(req, res, next) {
 
     });
 
-    res.render('index', {events: eventsString});
+    res.render('blockedSites', {events: eventsString});
 });
 
 
@@ -427,7 +427,7 @@ router.post('/updateDelete', function(req, res, next) {
         });
     });
 
-    res.render('index', {events: eventsString});
+    res.render('blockedSites', {events: eventsString});
 });
 
 
@@ -443,7 +443,7 @@ router.post('/removeAll', function(req, res, next) {
         });
     });
 
-    res.render('index', {events: eventsString});
+    res.render('blockedSites', {events: eventsString});
 });
 
 

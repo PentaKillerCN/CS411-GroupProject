@@ -13,3 +13,26 @@ block content
             label(for='password') Password
             input.form-control(type='password' id='password' placeholder='password' name='password')
           button.btn.btn-primary(type='submit') Log in
+            title Google SignIn
+            link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
+            meta(name='google-signin-client_id', content='63389089138-gcn0kfpp3574epv1p3v41341fr1l4hud.apps.googleusercontent.com')
+            script(src='https://apis.google.com/js/platform.js', async='', defer='')
+            script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+            script(src='../routes/googlelogin.js')
+            style.
+              .g-signin2 {
+                margin-left: 200px;
+                margin-right: 200px;
+              }
+
+              .data {
+                display: none;
+              }
+          body
+            .g-signin2(data-onsuccess='onSignIn')
+            .data
+              p Profile Details
+              img#pic.img-circle(width='100', height='100')
+              p Email Address
+              p id="email" class="alert alert-danger">
+              button.btn.btn-danger(onclick='signOut()') SignOut

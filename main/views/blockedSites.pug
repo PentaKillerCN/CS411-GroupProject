@@ -14,7 +14,7 @@ html(lang='en')
         form(method='POST' action='/removeAll')
             Button(type='Submit') Remove All
         <h3>Websites Being Blocked</h3>
-        <a href="/getData">LOAD DATA</a>
+        <a href="/getData">check</a>
         pre #{items}
         //this information is sent to 1) mongodb, to store and update the list of sites to block
         //and to                      2) the extension, for use in actually blocking the sites
