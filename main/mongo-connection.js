@@ -1,6 +1,7 @@
 var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 var mpswd = require('./mongopswd.js').pswd;
+var muname = require('./mongopswd.js').pswd;
 const assert = require('assert');
 console.log("mpswd: " + mpswd);
 
@@ -8,7 +9,7 @@ console.log("mpswd: " + mpswd);
 //const uri = "mongodb+srv://joe:" + String(mpswd) + "@cluster0-rya5t.gcp.mongodb.net/test?retryWrites=true";
 //const uri = "mongodb+srv://joe:mypassword@cluster0-rya5t.gcp.mongodb.net/test?retryWrites=true";
 
-var uri = "mongodb://joe:" + mpswd + "@cluster0-shard-00-00-rya5t.gcp.mongodb.net:27017,cluster0-shard-00-01-rya5t.gcp.mongodb.net:27017,cluster0-shard-00-02-rya5t.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
+var uri = "mongodb://" + muname +":" + mpswd + "@cluster0-shard-00-00-rya5t.gcp.mongodb.net:27017,cluster0-shard-00-01-rya5t.gcp.mongodb.net:27017,cluster0-shard-00-02-rya5t.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
 
 var _db;
 
