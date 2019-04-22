@@ -1,4 +1,10 @@
 .mysky { position:relative; }
+
+nav.navbar.navbar-expand-lg.navbar-light.bg-light{
+	position: fixed;
+	z-index:1;
+
+}
 #sky{
     position: fixed;
     right: 0;
