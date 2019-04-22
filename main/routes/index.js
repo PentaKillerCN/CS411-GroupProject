@@ -319,10 +319,9 @@ router.post('/register', function(req,res,next){
 
           // confirm that user typed same password twice
           if (req.body.password !== req.body.confirmPassword) {
-            var err = new Error('Passwords do not match.');
-            err.status = 400;
-            return next(err);
+            res.render('register', {errors:'Passwords do not match.'});
           }
+
 
           // create object with form input
           var userData = {
@@ -339,9 +338,7 @@ router.post('/register', function(req,res,next){
 
       
         } else {
-          var err = new Error('All fields required.');
-          err.status = 400;
-          return next(err);
+          res.render('register', {errors:'All fields required.'});
         }
       });
 
