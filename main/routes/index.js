@@ -14,6 +14,7 @@ var eventsString = "";
 
 
 
+
 router.get('/', function(req, res, next) {
     res.render('index');
 });
@@ -284,22 +285,18 @@ router.post('/login', function(req, res, next) {
     connection.connectToServer( function( err ) {
         if (err) throw err;
       if (req.body.email && req.body.password) {
-        connection.authenticate(req.body.email, req.body.password, function (error, user) {
+        connection.authenticate(req.body.email.toLowerCase(), req.body.password, function (error, user) {
           if (error || !user) {
             console.log(error);
             console.log(user);
-            var err = new Error('Wrong email or password.');
-            err.status = 401;
-            return next(err);
+            res.render('login', {errors:'Wrong email or password.'});
           }  else {
             req.session.userId = user._id;
             res.render('main');
           }
         });
       } else {
-        var err = new Error('Email and password are required.');
-        err.status = 401;
-        return next(err);
+        res.render('login', {errors:'Email and password are required.'});
       }
     });
 });
