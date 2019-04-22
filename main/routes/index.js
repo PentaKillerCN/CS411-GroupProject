@@ -5,7 +5,6 @@ var connection = require('../mongo-connection.js');
 var db = connection.thedb;
 
 var router = express.Router();
-var User = require('../models/user');
 
 var eventsString = "";
 
@@ -26,6 +25,27 @@ router.get('/logout', function(req, res, next) {
 router.get('/login', function(req,res, next) {
   return res.render('login', {title: 'Log In'});
 });
+
+
+router.get('/getData', function(req, res, next){
+  var result = [];
+
+  connection.connectToServer(function(err){
+    var db = connection.getDb();
+
+    var cursor = db.collection("users").find();
+    cursor.forEach(function(doc, err){
+      if (err) throw err;
+      result.push(doc);
+    }, function(){
+      db.close();
+      res.render('index', {items:result});
+    });
+  });
+});
+
+
+
 // POST /login
 router.post('/login', function(req, res, next) {
     connection.connectToServer( function( err ) {
@@ -342,8 +362,16 @@ router.post('/add', function(req, res, next) {
     res.render('blockedSites');
 });
 
-//this function is run when the user adds a new site to their blocking list
+
+
 router.post('/update', function(req, res, next) {
+    res.render('blockedSites');
+});
+
+
+
+//this function is run when the user adds a new site to their blocking list
+router.post('/updateAdd', function(req, res, next) {
 
     //retrieve mongo connection
     connection.connectToServer( function( err ) {
@@ -378,6 +406,41 @@ router.post('/update', function(req, res, next) {
         }
         
 
+    });
+
+    res.render('index', {events: eventsString});
+});
+
+
+
+//this function is run when the user deletes a site from their blocking list
+router.post('/updateDelete', function(req, res, next) {
+    //retrieve mongo connection
+    connection.connectToServer( function( err ) {
+        var db = connection.getDb();
+
+        var deleteQuery = { name: req.body.unblockText };
+        db.collection("users").deleteOne(deleteQuery, function(err, res) {
+            if (err) throw err;
+            console.log("1 document deleted");
+            db.close();
+        });
+    });
+
+    res.render('index', {events: eventsString});
+});
+
+
+router.post('/removeAll', function(req, res, next) {
+    //retrieve mongo connection
+    connection.connectToServer( function( err ) {
+        var db = connection.getDb();
+
+        db.collection("users").drop(function(err, delOK) {
+            if (err) throw err;
+            if (delOK) console.log("Collection deleted");
+            db.close();
+        });
     });
 
     res.render('index', {events: eventsString});
