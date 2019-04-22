@@ -51,7 +51,7 @@ router.post('/login', function(req, res, next) {
     connection.connectToServer( function( err ) {
         if (err) throw err;
       if (req.body.email && req.body.password) {
-        connection.authenticate(req.body.email, req.body.password, function (error, user) {
+        connection.authenticate(req.body.email.toLowerCase(), req.body.password, function (error, user) {
           if (error || !user) {
             console.log(error);
             console.log(user);
@@ -92,7 +92,7 @@ router.post('/register', function(req,res,next){
 
           // create object with form input
           var userData = {
-            email: req.body.email,
+            email: req.body.email.toLowerCase(),
             name: req.body.name,
             password: req.body.password,
             sites: []
