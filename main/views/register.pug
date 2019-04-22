@@ -1,29 +1,27 @@
 doctype html
+
 head
-  link(rel='stylesheet', type='text/css', href='stylesheets/signup.css')
-  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
-.bg
-  .p-3.mb-2.bg-dark.text-white
-    h1.display-5.text-center SMART SHIELD
-  .main.container.row
+    link(rel='stylesheet', type='text/css', href='stylesheets/signup.css')
+body
+    .main.container.row
     .col-md-6.col-md-offset-3
       h1.display-4.m-b-2 Sign Up
-      // register form
-      form(method='POST', action='/register')
-        .form-group
-          label(for='name') Name:
-          input#name.form-control(type='text', placeholder='first and last', name='name')
-        .form-group
-          label(for='email') Email:
-          input#email.form-control(type='email', placeholder='name@email.com', name='email')
-        .form-group
-          label(for='pw') Password:
-          input#pw.form-control(type='password', name='password')
-        .form-group
-          label(for='pw2') Confirm Password:
-          input#pw2.form-control(type='password', name='confirmPassword')
-        button.btn.btn-primary(type='submit') Sign up
 
+      // register form
+      form(method='POST' action='/register')
+        div.form-group
+          label(for='name') Name:
+          input#name.form-control(type='text', placeholder='first and last' name='name')
+        div.form-group
+          label(for='email') Email:
+          input#email.form-control(type='email', placeholder='name@email.com' name='email')
+        div.form-group
+          label(for='pw') Password:
+          input#pw.form-control(type='password' name='password')
+        div.form-group
+          label(for='pw2') Confirm Password:
+          input#pw2.form-control(type='password' name='confirmPassword')
+        button.btn.btn-primary(type='submit') Sign up
 
 
 
