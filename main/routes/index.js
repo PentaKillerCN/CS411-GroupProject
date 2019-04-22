@@ -382,6 +382,9 @@ router.post('/tologin', function(req, res, next){
    
 });
 
+router.get('/main', function(req, res, next){
+    res.render('main');   
+});
 router.post('/main', function(req, res, next){
     res.render('main');   
 });

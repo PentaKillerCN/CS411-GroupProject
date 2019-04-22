@@ -6,7 +6,7 @@ head
   video#sky(autoplay='', muted='', loop='')
     source(src='stylesheets/sky.mp4', type='video/mp4')
   nav.navbar.navbar-light.bg-dark
-    a.navbar-brand(href='main.pug') Navbar
+    a.navbar-brand(href='/main') Navbar
   .container
     span.logo SMART SHIELD
   .overlay
@@ -19,17 +19,4 @@ head
       div(style='float: right; width: 250px;')
         form(method='get', action='/register')
           button#myBtn1(type='Submit') SIGN UP
-      div(style='float: right; width: 250px')
-        form(method='post', action='/main')
-          button#myBtn1(type='Submit') link to main
-    pre.
-      
-
-      
-
-      
-
-      
-
-      
 
