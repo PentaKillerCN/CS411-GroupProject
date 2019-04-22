@@ -301,6 +301,12 @@ router.post('/login', function(req, res, next) {
     });
 });
 
+
+//Post /googlelogin
+router.post('/googlelogin', function(req,res,next){
+    res.render('googlelogin');
+});
+
 //Get /register
 router.get('/register', function(req,res,next){
   return res.render('register', {title: 'Sign Up'});
