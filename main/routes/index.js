@@ -99,7 +99,7 @@ router.post('/register', function(req,res,next){
             email: req.body.email,
             name: req.body.name,
             password: req.body.password,
-            sites: ""
+            sites: []
           };
           
           //insert document into mongo
@@ -382,7 +382,7 @@ router.post('/updateAdd', function(req, res, next) {
         
         
         var query = {_id: oid};
-        var newsites = { $set: {sites: req.body.blockText} }; //change this to some sort of append. just sites + req.body.blockText?
+        var newsites = { $push: {sites: req.body.blockText} }; //change this to some sort of append. just sites + req.body.blockText?
         console.log(req.body.blockText);
         db.collection("users").updateOne(query, newsites, function(err, res) {
             if (err) throw err;
