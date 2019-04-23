@@ -20,6 +20,7 @@ router.get('/', function(req, res, next) {
 });
 
 
+
 /**
  * Lists the next 10 events on the user's primary calendar.
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
@@ -400,6 +401,12 @@ router.post('/main', function(req, res, next){
 router.post('/test', function(req, res, next){
     res.render('test');
 });
+
+router.post('/focus', function(req, res, next){
+    res.render('focus');
+});
+
+
 
 
 module.exports = router;
