@@ -14,18 +14,26 @@ head
         a(href='') Contact
       li
         a(href='') About
-  .card-container
-    h3 Upcoming Events:
-    
+  .card-container1
+    .header
+      h3 Upcoming Events:
     form(method='POST', action='/getEvents')
       input#searchText(type='text', placeholder='Search for an event', name='searchText')
       button.primary(type='Submit') Search
     pre.
-        #{locals.events}
-  
-  p(align='right') To keep on track and block sites, add the smart planner extension.
-  form(method='GET', action='/getData', align='right')
-    button(type='Submit') Add extension
-  
-    
-  a(href='/test.pug') Test
+      #{locals.events}
+  .card-container2
+    .text
+      .header
+        h3 Add Blocked Website
+      h6.one Want to be more productive?
+      h6.two Tired of Being Interrupted?
+      h6.three Try Our Smart Shield Extension!
+    form(method='POST', action='/getData', align='right')
+      button.primary(type='Submit') Add extension
+  .card-container3
+    img.img-fluid(src='/stylesheets/signupbg.jpg', alt='Responsive image')
+    h1.display-3.text-center.text-dark Hi, Name!
+    form(method='POST', action='/focus', align='center')
+      button.primary(type='Submit') FOCUS
+

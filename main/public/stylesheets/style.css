@@ -31,7 +31,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light{
 	transform:translate(-50%,-50%);
 }
 .container span{
-	color:red;
+	color: rgb(49, 52, 56);
 	display:block;
 	z-index:1;
 }
