@@ -424,7 +424,9 @@ router.post('/focus', function(req, res, next){
     res.render('focus');
 });
 
-
+router.post('/getdata', function(req, res, next){
+    res.render('blockedSites');
+});
 
 
 module.exports = router;
