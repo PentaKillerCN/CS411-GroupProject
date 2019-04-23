@@ -1,5 +1,5 @@
 var express = require('express');
- 
+var mid = require('../middleware');
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
@@ -277,7 +277,7 @@ router.get('/logout', function(req, res, next) {
 
 
 //Get /login
-router.get('/login', function(req,res, next) {
+router.get('/login', mid.loggedOut, function(req,res, next) {
   return res.render('login', {title: 'Log In'});
 });
 
@@ -312,7 +312,7 @@ router.post('/googlelogin', function(req,res,next){
 });
 
 //Get /register
-router.get('/register', function(req,res,next){
+router.get('/register', mid.loggedOut, function(req,res,next){
   return res.render('register', {title: 'Sign Up'});
 });
 
@@ -408,7 +408,7 @@ router.post('/tologin', function(req, res, next){
    
 });
 
-router.get('/main', function(req, res, next){
+router.get('/main', mid.requiresLogin, function(req, res, next){
     res.render('main');   
 });
 router.post('/main', function(req, res, next){

@@ -21,7 +21,8 @@ head
       input#searchText(type='text', placeholder='Search for an event', name='searchText')
       button.primary(type='Submit') Search
     pre.
-        #{locals.events}
+  form(method='GET', action='/logout', align='right')
+    button(type='Submit') Logout
   
   p(align='right') To keep on track and block sites, add the smart planner extension.
   form(method='GET', action='/getData', align='right')
