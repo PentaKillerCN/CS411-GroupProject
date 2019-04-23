@@ -3,13 +3,14 @@
 console.log("hello");
 document.addEventListener("DOMContentLoaded", function(){
     var buttonb = document.getElementById('blockButton');
-    var textb = document.getElementById('blockText');
+    var items = document.getElementById('items');
     if (buttonb){
         buttonb.addEventListener('click', function() {
-            //console.log(textb.value);
+            console.log(items.innerHTML);
             //pass the new site to be blocked to background.js
-            chrome.runtime.sendMessage({newSite: textb.value}, function(response) {
+            chrome.runtime.sendMessage({newSite: items.innerHTML}, function(response) {
                 //console.log(response.farewell);
+                //todo: parse innterhtml, separate into separate sites. regex?? rn it's treated as one big site lmao
             });
         });
     }
