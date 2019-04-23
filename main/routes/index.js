@@ -339,7 +339,13 @@ router.post('/register', function(req,res,next){
           // check whether an email has been used to register an account
           db.collection("users").findOne({email:req.body.email.toString()}, function(err, res){
               if (err) throw err;
-              if (res) console.log(res.email);
+              if (res){
+                  console.log("YUP");
+                  console.log(res.email);
+              }
+              else{
+                  console.log("NOPE");
+              }
           });
 
 
