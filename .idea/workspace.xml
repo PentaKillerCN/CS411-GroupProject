@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e75d9dc-8680-4b18-b6a0-ed388646673a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/views/blockedSites.pug" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/blockedSites.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/register.pug" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/register.pug" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="256" column="57" selection-start-line="256" selection-start-column="57" selection-end-line="256" selection-end-column="57" />
+            <state relative-caret-position="539">
+              <caret line="395" column="9" selection-start-line="395" selection-start-column="9" selection-end-line="395" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -149,7 +150,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12762000" />
+    <option name="totallyTimeSpent" value="14109000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="735" y="23" width="705" height="822" extended-state="0" />
@@ -230,8 +231,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="256" column="57" selection-start-line="256" selection-start-column="57" selection-end-line="256" selection-end-column="57" />
+        <state relative-caret-position="539">
+          <caret line="395" column="9" selection-start-line="395" selection-start-column="9" selection-end-line="395" selection-end-column="9" />
         </state>
       </provider>
     </entry>

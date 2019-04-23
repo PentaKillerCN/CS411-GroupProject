@@ -254,7 +254,7 @@ router.post('/removeAll', function(req, res, next) {
         var query = {_id: oid};
 
         var deleteQuery = { $unset: {sites:1} };
-        db.collection("users").update(query, deleteQuery, function(err, resulte) {
+        db.collection("users").update(query, deleteQuery, function(err, result) {
             if (err) throw err;
             console.log("Collection deleted");
             db.close();
@@ -348,14 +348,26 @@ router.post('/register', function(req,res,next){
           }
 
           // check whether an email has been used to register an account
-          db.collection("users").findOne({email:req.body.email.toString()}, function(err, res){
+          db.collection("users").findOne({email:req.body.email.toString()}, function(err, result){
               if (err) throw err;
-              if (res){
+              if (result){
                   console.log("YUP");
-                  console.log(res.email);
+                  console.log(result.email);
+                  res.render('register', {errors: 'Email has been used.'});
               }
               else{
                   console.log("NOPE");
+                  // create object with form input
+                  var userData = {
+                        email: req.body.email.toLowerCase(),
+                        name: req.body.name,
+                        password: req.body.password,
+                        sites: []
+                  };
+
+                  //insert document into mongo
+                  connection.insertRecord("users", userData);
+                  res.render('login');
               }
           });
 
@@ -363,7 +375,7 @@ router.post('/register', function(req,res,next){
           //if (result.toString() !== req.body.email.toString()) {
 
 
-
+/*
                 // create object with form input
                 var userData = {
                     email: req.body.email.toLowerCase(),
@@ -374,10 +386,11 @@ router.post('/register', function(req,res,next){
 
                 //insert document into mongo
                 connection.insertRecord("users", userData);
-                res.render('login');
+                */
+                //res.render('login');
             //}
           //else{
-              res.render('register', {errors: 'Email has been used.'});
+              //res.render('register', {errors: 'Email has been used.'});
            /// }*/
       
         } else {
