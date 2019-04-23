@@ -297,6 +297,7 @@ router.post('/login', function(req, res, next) {
             res.render('login', {errors:'Wrong email or password.'});
           }  else {
             req.session.userId = user._id;
+            console.log("here" + req.session.userId);
             res.render('main');
           }
         });
