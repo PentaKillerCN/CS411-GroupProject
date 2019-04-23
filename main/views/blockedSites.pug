@@ -1,20 +1,35 @@
 doctype html
-html(lang='en')
-    head
-      title Manage Websites
-     
+head
+  link(rel='stylesheet', type='text/css', href='stylesheets/mainstyle.css')
+  link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+.p-3.mb-2.bg-transparent
+  h1.display-5.text-center.text-dark SMART SHIELD
+  ul
+    li
+      a(href='/main') Home
+    li
+      a(href='/about') About
+.card-container4
+  .header1
+    h3 READY TO FOCUS
+  .form-group
+    form(method='POST', action='/updateAdd')
+      input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Type site url here to block', name='blockText')
+      button#blockButton.primary3(type='Submit', name='blockButton') Add Site
+  h3 Websites Being Blocked
+
+.card-container5
+  .header1
+    h3 TAKE A BREAK
+  form(method='POST', action='/updateDelete')
+    input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Type site url here to unblock', name='unblockText')
+    button.primary1(type='Submit') Delete Site
+  form(method='POST', action='/removeAll')
+    button.primary2(type='Submit') Remove All
+pre.
   
-    body
-        form(method='POST' action='/updateAdd')
-            input(type='text', placeholder='Type site url here to block' name='blockText')
-            Button(type='Submit' id='blockButton' name='blockButton') Add Site
-        form(method='POST' action='/updateDelete')
-            input(type='text', placeholder='Type site url here to unblock' name='unblockText')
-            Button(type='Submit') Delete Site
-        form(method='POST' action='/removeAll')
-            Button(type='Submit') Remove All
-        <h3>Websites Being Blocked</h3>
-        <a href="/getData">check</a>
-        pre #{items}
-        //this information is sent to 1) mongodb, to store and update the list of sites to block
-        //and to                      2) the extension, for use in actually blocking the sites
+
+
+
+  
+

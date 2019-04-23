@@ -7,18 +7,14 @@ head
     h1.display-5.text-center.text-dark SMART SHIELD
     ul
       li
-        a(href='') Home
+        a(href='/main') Home
       li
-        a(href='') News
-      li
-        a(href='') Contact
-      li
-        a(href='') About
+        a(href='/about') About
   .card-container1
     .header
       h3 Upcoming Events:
     form(method='POST', action='/')
-      input#searchText(type='text', placeholder='Search for an event', name='searchText')
+      input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Search for an event', name='searchText')
       button.primary(type='Submit') Search
   .card-container2
     .text
@@ -33,7 +29,7 @@ head
     img.img-fluid(src='/stylesheets/signupbg.jpg', alt='Responsive image')
     h1.display-3.text-center.text-dark Hi, Name!
     form(method='POST', action='/focus', align='center')
-      button.primary(type='Submit') FOCUS
+      button.focus(type='Submit') FOCUS
   pre.
     
    

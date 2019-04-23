@@ -19,7 +19,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #353866;
 }
 
 li {
@@ -47,12 +47,24 @@ li a:hover {
 	padding-top: 30px;
 	height: 100px;
 	width: 400px;
-	background-color:rgb(80, 86, 96,0.75); 
+	background-color:rgba(67,67,83,0.75); 
 	/*background-size: contain;*/
 	color: rgb(41, 41, 43);
 	margin-bottom: 30px;
 }
 
+
+.header1{
+	border-radius: 8px;
+	padding-top: 30px;
+	height: 100px;
+	width: 350px;
+	background-color:rgba(67,67,83,0.75);
+
+	/*background-size: contain;*/
+	color: rgb(41, 41, 43);
+	margin-bottom: 30px;
+}
 
 
 h3{
@@ -125,7 +137,7 @@ p {
 }
 
 .card-container1:hover {
-	background-color: rgba(255,255,255,0.9);
+	background-color: #f8faff;
 	border-radius: 8px;
 	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
 	color: #B3B8CD;
@@ -159,7 +171,7 @@ p {
 }
 
 .card-container2:hover {
-	background-color: rgba(255,255,255,0.8);
+	background-color: #f8faff;
 	border-radius: 8px;
 	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
 	color: #B3B8CD;
@@ -191,20 +203,45 @@ p {
 }
 
 
+
 button.primary {
-	background-color: #03BFCB;
-	border: 1px solid #03BFCB;
+	background-color: #CBA6C3;
+	border: 1px solid #CBA6C3;
 	border-radius: 3px;
-	color: #231E39;
+	color: #E0E3DA;
 	font-family: Montserrat, sans-serif;
 	font-weight: 500;
 	padding: 10px 25px;
 	margin-left: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
 }
 
-button.primary.ghost {
-	background-color: transparent;
-	color: #02899C;
+button.primary:hover {
+	background-color: #e85a71;
+	border: 1px solid #e85a71;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	padding: 10px 25px;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+
+button.focus {
+	background-color: #e85a71;
+	border: 1px solid #e85a71;
+	border-radius: 8px;
+	color: #d8e9ef;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	padding: 10px 25px;
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 30%;
+	height: 10%;
 }
 
 .skills {
@@ -229,23 +266,191 @@ button.primary.ghost {
 	padding: 7px;
 }
 
+.card-container4 {
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+	position: fixed;
+	width: 350px;
+	height: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	top: 20%;
+	left:21%;
+
+}
+
+.card-container4:hover{
+	background-color: #f8faff;
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+	position: fixed;
+	width: 350px;
+	height: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	top: 20%;
+	left:21%;
+
+}
+
+
+.card-container5 {
+	background-color: rgba(255,255,255,0.75);
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+	position: fixed;
+	width: 350px;
+	height: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	top: 20%;
+	left:49%;
+
+}
+
+.card-container5:hover{
+	background-color: #f8faff;
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+	position: fixed;
+	width: 350px;
+	height: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	top: 20%;
+	left:49%;
+
+}
 button.primary1 {
+	position: fixed;
 	margin-top: 30px;
-	background-color: #03BFCB;
-	border: 1px solid #03BFCB;
+	background-color: #CBA6C3;
+	border: 1px solid #CBA6C3;
 	border-radius: 3px;
-	color: #231E39;
+	color: #E0E3DA;
 	font-family: Montserrat, sans-serif;
 	font-weight: 500;
 	font-size: 20px;
-	padding: 10px 25px;
-	margin-right: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top: 50%;
+	left:51%;
+
+}
+
+button.primary1:hover {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #e85a71;
+	border: 1px solid #e85a71;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top: 50%;
+	left:51%;
+}
+
+button.primary2 {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #CBA6C3;
+	border: 1px solid #CBA6C3;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top: 50%;
+	left:63%;
+
+
+}
+
+button.primary2:hover {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #e85a71;
+    border: 1px solid #e85a71;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top: 50%;
+	left:63%;
+
+
+}
+
+
+button.primary3 {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #CBA6C3;
+	border: 1px solid #CBA6C3;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top: 50%;
+	left:30%;
+
+
+}
+
+button.primary3:hover {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #e85a71;
+    border: 1px solid #e85a71;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top: 50%;
+	left:30%;
+
+
 }
 
 img{
 	margin-bottom:30px;
 }
 
+#exampleDropdownFormEmail2{
+	margin-left: 10%;
+	max-width: 80%;
+
+}
 
 
 
