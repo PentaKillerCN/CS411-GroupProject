@@ -27,7 +27,7 @@ var blockedUrls = function () {
         console.log(jobj['urls'][0]);
         return [jobj['urls'][0]];
     } else {
-        return ['*://www.facebook.com/*'];
+        return ['*://www.microsoft.com/*'];
     }
 }
 
