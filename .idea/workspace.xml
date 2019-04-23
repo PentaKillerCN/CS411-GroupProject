@@ -2,9 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e75d9dc-8680-4b18-b6a0-ed388646673a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/middleware/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/public/stylesheets/focus.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/public/stylesheets/tree.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/public/stylesheets/water.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/routes/focus.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/views/focus.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extension/contentscript.js" beforeDir="false" afterPath="$PROJECT_DIR$/extension/contentscript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/main/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/public/stylesheets/mainstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/public/stylesheets/mainstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/main/public/stylesheets/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/blockedSites.pug" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/blockedSites.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/views/main.pug" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/main.pug" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
@@ -19,26 +27,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1766">
-              <caret line="369" column="30" selection-start-line="369" selection-start-column="30" selection-end-line="369" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/middleware/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            <state relative-caret-position="1358">
+              <caret line="370" column="30" selection-start-line="370" selection-start-column="30" selection-end-line="370" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/views/index.pug">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/middleware/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/views/main.pug">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="543">
+              <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -47,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/main/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+              <caret line="34" column="8" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -84,9 +101,10 @@
       <list>
         <option value="$PROJECT_DIR$/main/mongopswd.js" />
         <option value="$PROJECT_DIR$/main/mongo-connection.js" />
-        <option value="$PROJECT_DIR$/main/views/main.pug" />
         <option value="$PROJECT_DIR$/main/routes/index.js" />
         <option value="$PROJECT_DIR$/main/middleware/index.js" />
+        <option value="$PROJECT_DIR$/main/views/index.pug" />
+        <option value="$PROJECT_DIR$/main/views/main.pug" />
       </list>
     </option>
   </component>
@@ -174,7 +192,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11108000" />
+    <option name="totallyTimeSpent" value="11622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="55" width="766" height="760" extended-state="0" />
@@ -244,24 +262,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/views/main.pug">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/main/views/layout.pug">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/profile.pug">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/main/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1766">
-          <caret line="369" column="30" selection-start-line="369" selection-start-column="30" selection-end-line="369" selection-end-column="30" />
+        <state relative-caret-position="1358">
+          <caret line="370" column="30" selection-start-line="370" selection-start-column="30" selection-end-line="370" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/middleware/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        <state relative-caret-position="225">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/index.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views/main.pug">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
         </state>
       </provider>
     </entry>

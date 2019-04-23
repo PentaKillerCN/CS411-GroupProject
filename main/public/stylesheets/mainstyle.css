@@ -9,7 +9,11 @@ body{
     right: 0;
     bottom: 0;
 
+
 }
+
+
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -37,57 +41,155 @@ li a:hover {
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
-* {
-	box-sizing: border-box;
+
+.header{
+	border-radius: 8px;
+	padding-top: 30px;
+	height: 100px;
+	width: 400px;
+	background-color:rgb(80, 86, 96,0.75); 
+	/*background-size: contain;*/
+	color: rgb(41, 41, 43);
+	margin-bottom: 30px;
 }
 
 
 
-h3 {
-	margin: 10px 0;
+h3{
+	color: rgb(41, 41, 43);
 }
 
-h6 {
+h6.one {
 	margin: 5px 0;
 	text-transform: uppercase;
+	color:black;
+	font-family: "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	position: relative;
+	margin-top: 20px;
+	top:20%;
+	left:-10%;
 }
+
+
+
+h6.two {
+	margin: 5px 0;
+	text-transform: uppercase;
+	color:black;
+	font-family: "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	position: relative;
+	margin-top: 30px;
+	top:40%;
+	left:0%;
+}
+
+h6.three {
+	margin: 5px 0;
+	text-transform: uppercase;
+	color:black;
+	font-family: "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	position: relative;
+	margin-top: 30px;
+	top:40%;
+	left:10%;
+
+	
+}
+
 
 p {
 	font-size: 14px;
 	line-height: 21px;
+	color:black;
 }
 
-.card-container {
-	background-color: rgba(255,255,255,0.5);
-	border-radius: 5px;
+
+
+.card-container1 {
+	background-color: rgba(255,255,255.0.75);
+	border-radius: 8px;
 	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
 	color: #B3B8CD;
-	padding-top: 30px;
-	position: relative;
+
+	position: fixed;
 	width: 400px;
 	height: 500px;
 	max-width: 100%;
 	text-align: center;
-	margin-left: 14px;
+	margin-left: 20px;
+	top:20%;
+
+
+
+
 }
 
-.card-container .pro {
-	color: #231E39;
-	background-color: #FEBB0B;
-	border-radius: 3px;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 3px 7px;
-	position: absolute;
-	top: 30px;
-	left: 30px;
+.card-container1:hover {
+	background-color: rgba(255,255,255,0.9);
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+
+	position: fixed;
+	width: 400px;
+	height: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	top:20%;
+
+
+
 }
 
-.card-container .round {
-	border: 1px solid #03BFCB;
-	border-radius: 50%;
-	padding: 7px;
+.card-container2 {
+	background-color: rgba(255,255,255,0.5);
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+	position: fixed;
+	width: 400px;
+	height: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	top: 20%;
+	left:66%;
+
 }
+
+.card-container2:hover {
+	background-color: rgba(255,255,255,0.8);
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+	position: fixed;
+	width: 400px;
+	height: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	top: 20%;
+	left:66%;
+
+}
+
+.card-container3 {
+	background-color: rgba(255,255,255,0.75);
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+	position: fixed;
+	width: 400px;
+	height: 500px;
+	max-width: 100%;
+	text-align: center;
+	margin-left: 20px;
+	top: 20%;
+	left:33%;
+
+}
+
 
 button.primary {
 	background-color: #03BFCB;
@@ -97,6 +199,7 @@ button.primary {
 	font-family: Montserrat, sans-serif;
 	font-weight: 500;
 	padding: 10px 25px;
+	margin-left: 10px;
 }
 
 button.primary.ghost {
@@ -125,3 +228,24 @@ button.primary.ghost {
 	margin: 0 7px 7px 0;
 	padding: 7px;
 }
+
+button.primary1 {
+	margin-top: 30px;
+	background-color: #03BFCB;
+	border: 1px solid #03BFCB;
+	border-radius: 3px;
+	color: #231E39;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 10px 25px;
+	margin-right: 20px;
+}
+
+img{
+	margin-bottom:30px;
+}
+
+
+
+
