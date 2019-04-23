@@ -370,29 +370,6 @@ router.post('/register', function(req,res,next){
                   res.render('login');
               }
           });
-
-
-          //if (result.toString() !== req.body.email.toString()) {
-
-
-/*
-                // create object with form input
-                var userData = {
-                    email: req.body.email.toLowerCase(),
-                    name: req.body.name,
-                    password: req.body.password,
-                    sites: []
-                };
-
-                //insert document into mongo
-                connection.insertRecord("users", userData);
-                */
-                //res.render('login');
-            //}
-          //else{
-              //res.render('register', {errors: 'Email has been used.'});
-           /// }*/
-      
         } else {
           res.render('register', {errors:'All fields required.'});
         }

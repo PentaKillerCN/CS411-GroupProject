@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2e75d9dc-8680-4b18-b6a0-ed388646673a" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/main/views/main.pug" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/main.pug" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/main/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/main/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/login.pug" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/login.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/views/register.pug" beforeDir="false" afterPath="$PROJECT_DIR$/main/views/register.pug" afterDir="false" />
+>>>>>>> dcb9bfb4edf3af2f48716ccf4f6d7e3ccc0ac2c7
     </list>
     <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,6 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views/layout.pug">
@@ -20,6 +27,11 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main/views/login.pug">
+=======
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/mongo-connection.js">
+>>>>>>> dcb9bfb4edf3af2f48716ccf4f6d7e3ccc0ac2c7
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
               <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
@@ -28,10 +40,17 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/main/views/focus.pug">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+=======
+        <entry file="file://$PROJECT_DIR$/main/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="12">
+              <caret line="381" lean-forward="true" selection-start-line="381" selection-end-line="381" />
+>>>>>>> dcb9bfb4edf3af2f48716ccf4f6d7e3ccc0ac2c7
             </state>
           </provider>
         </entry>
@@ -159,7 +178,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="14680000" />
+=======
+    <option name="totallyTimeSpent" value="15053000" />
+>>>>>>> dcb9bfb4edf3af2f48716ccf4f6d7e3ccc0ac2c7
   </component>
   <component name="ToolWindowManager">
     <frame x="-40" y="23" width="927" height="760" extended-state="0" />
@@ -224,15 +247,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/mongo-connection.js">
+    <entry file="file://$PROJECT_DIR$/main/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+        <state relative-caret-position="12">
+          <caret line="381" lean-forward="true" selection-start-line="381" selection-end-line="381" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/routes/index.js">
+    <entry file="file://$PROJECT_DIR$/main/mongo-connection.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="588">
           <caret line="451" selection-start-line="451" selection-end-line="451" />
         </state>
@@ -256,6 +280,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-798">
           <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+=======
+        <state relative-caret-position="-7">
+          <caret line="45" column="19" lean-forward="true" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+>>>>>>> dcb9bfb4edf3af2f48716ccf4f6d7e3ccc0ac2c7
         </state>
       </provider>
     </entry>
