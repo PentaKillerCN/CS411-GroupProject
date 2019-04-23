@@ -15,19 +15,17 @@ head
       li
         a(href='') About
   .card-container
-    span.pro PRO
     h3 Upcoming Events:
-    h6 New York
-    form(method='POST', action='/')
+    
+    form(method='POST', action='/getEvents')
       input#searchText(type='text', placeholder='Search for an event', name='searchText')
       button.primary(type='Submit') Search
+    pre.
+        #{locals.events}
+  
   p(align='right') To keep on track and block sites, add the smart planner extension.
   form(method='GET', action='/getData', align='right')
     button(type='Submit') Add extension
-  h2 Upcoming Events:
-  form(method='POST', action='/')
-    input#searchText(type='text', placeholder='Search for an event', name='searchText')
-    button(type='Submit') Search
-  pre.
+  
     
   a(href='/test.pug') Test

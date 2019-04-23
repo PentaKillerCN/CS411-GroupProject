@@ -13,8 +13,6 @@ var router = express.Router();
 var eventsString = "";
 
 
-
-
 router.get('/', function(req, res, next) {
     res.render('index');
 });
@@ -56,18 +54,10 @@ function listEvents(auth, callback) {
 
 
 //this runs when user clicks the search button in main
-router.post('/', function(req, res, next) {
-   
+router.post('/getEvents', function(req, res, next) {
     
-    
-    // If modifying these scopes, delete token.json.
     const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-    // The file token.json stores the user's access and refresh tokens, and is
-    // created automatically when the authorization flow completes for the first
-    // time.
     const TOKEN_PATH = 'token.json';
-    
-    
     
     // Load client secrets from a local file.
     fs.readFile('credentials.json', (err, content) => {
@@ -125,56 +115,57 @@ router.post('/', function(req, res, next) {
         });
       });
     }
-
-
-/**
- * Lists the next 10 events on the user's primary calendar.
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
-function listEvents(auth, callback, q) {
-	eventsString = "";
-  const calendar = google.calendar({version: 'v3', auth});
-  console.log("test1");
-  console.log(q);
-  calendar.events.list({
-    calendarId: 'primary',
-    timeMin: (new Date()).toISOString(),
-	q:q,
-    maxResults: 10,
-    singleEvents: true,
-    orderBy: 'startTime',
-  }, (err, res) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const events = res.data.items;
-    if (events.length) {
-      console.log('Upcoming 10 events:');
-      events.map((event, i) => {
-        const start = event.start.dateTime || event.start.date;
-        eventsString += `${start} - ${event.summary}`;
-        eventsString += '\n';
-        //console.log(`${start} - ${event.summary}`);
-      });
-	    sendResults();
-
-    } else {
-      eventsString = 'No upcoming events found.';
-	    sendResults();
+    
+    
+    function listUpcomingEvents(auth, q){
+        listEvents(auth, q, sendResults);
     }
-  });
 
-}
+    /**
+     * Lists the next 10 events on the user's primary calendar.
+     * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+     */
+    function listEvents(auth, q, callback) {
+        eventsString = "";
+      const calendar = google.calendar({version: 'v3', auth});
+      console.log("CALENDAR TEST");
+      console.log(q);
+      calendar.events.list({
+        calendarId: 'primary',
+        timeMin: (new Date()).toISOString(),
+        q:q,
+        maxResults: 10,
+        singleEvents: true,
+        orderBy: 'startTime',
+      }, (err, res) => {
+        if (err) return console.log('The API returned an error: ' + err);
+        const events = res.data.items;
+        if (events.length) {
+          console.log('Upcoming 10 events:');
+          events.map((event, i) => {
+            const start = event.start.dateTime || event.start.date;
+            eventsString += `${start} - ${event.summary}`;
+            eventsString += '\n';
+            //console.log(`${start} - ${event.summary}`);
+          });
+            callback();
 
-function listUpcomingEvents(auth, q){
-	listEvents(auth, sendResults, q);
+        } else {
+          eventsString = 'No upcoming events found.';
+            callback();
+        }
+      });
 
+    }
+    
+    function sendResults(){
+	console.log("SENDRESULTS TEST")
+	res.render('main', { events: eventsString });
 }
 
 });
 
-function sendResults(){
-	//console.log("now")
-	res.render('main', { events: eventsString });
-}
+
 
 
 
@@ -305,7 +296,7 @@ router.post('/login', function(req, res, next) {
           }  else {
             req.session.userId = user._id;
             console.log("here" + req.session.userId);
-            res.render('main');
+            res.render('main', {events: ""});
           }
         });
       } else {
