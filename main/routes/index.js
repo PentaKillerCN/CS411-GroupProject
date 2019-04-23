@@ -323,6 +323,7 @@ router.get('/register', function(req,res,next){
 router.post('/register', function(req,res,next){
     //connect to mongo db - the function argument is the callback
     connection.connectToServer( function( err ) {
+        var db = connection.getDb();
         if (err) throw err;
         if (req.body.email &&
         req.body.name &&
@@ -334,20 +335,32 @@ router.post('/register', function(req,res,next){
             res.render('register', {errors:'Passwords do not match.'});
           }
 
+          // check whether an email has been used to register an account
+          db.collection("users").findOne({email:req.body.email.toString()}, function(err, res){
+              if (err) throw err;
+              if (res) console.log(res.email);
+          });
 
-          // create object with form input
-          var userData = {
-            email: req.body.email.toLowerCase(),
-            name: req.body.name,
-            password: req.body.password,
-            sites: []
-          };
-          
-          //insert document into mongo
-          connection.insertRecord("users", userData);
-          res.render('main');
-            
 
+          /*if (result.toString() !== req.body.email.toString()) {
+
+
+
+                // create object with form input
+                var userData = {
+                    email: req.body.email.toLowerCase(),
+                    name: req.body.name,
+                    password: req.body.password,
+                    sites: []
+                };
+
+                //insert document into mongo
+                connection.insertRecord("users", userData);
+                res.render('main');
+            }
+          else{
+              res.render('register', {errors: 'Email has been used.'});
+            }*/
       
         } else {
           res.render('register', {errors:'All fields required.'});
