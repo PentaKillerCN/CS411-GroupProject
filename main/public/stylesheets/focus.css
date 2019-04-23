@@ -22,7 +22,7 @@ body {
   font-family: "Montserrat";
   border: 5px solid white;
   box-shadow: inset 2px 3px 8px 0 rgba(0, 0, 0, 0.1);
-  z-index: 2;
+
 }
 
 .wrap {
@@ -91,4 +91,40 @@ body {
   border-radius: 100px;
   margin: auto;
   z-index: 1;
+}
+
+.back{
+
+  font-family: 'dTJakobVariable';
+    src: url('https://yoksel.github.io/variable-fonts/assets/fonts/dT_Jakob_VariableConcept/dTJakobVariableConceptGX.ttf') format('truetype');
+    font-weight: normal;
+    
+  position: fixed;
+  margin: 1 auto;
+  font-size: 2.0rem;
+  padding: 0.75rem 2rem;
+  display: block;
+  background-color: rgba(34,38,44,0.2);
+  border: 1px solid transparent;
+  color: #ffffff;
+/*  font-weight: 300;*/
+  -webkit-border-radius: 3px;
+  border-radius: 8px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  z-index:3;
+
+  top: 0;
+  left: 0;
+
+
+
+}
+
+
+.back:hover {
+  background-color: rgba(34,38,44,0.5);
+  color: black;
+  border-color: #009ac9;
 }

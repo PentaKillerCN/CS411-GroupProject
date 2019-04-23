@@ -7,23 +7,24 @@ head
     h1.display-5.text-center.text-dark SMART SHIELD
     ul
       li
-        a(href='') Home
+        a(href='/main') Home
       li
+
         a(href='') News
       li
         a(href='') Contact
       li
-        a(href='') About
+        a(href='/about') About
       form(method='GET', action='logout', align='right')
         button.primary(type='Submit') Logout
   .card-container1
     .header
       h3 Upcoming Events:
     form(method='POST', action='/getEvents')
-      input#searchText(type='text', placeholder='Search for an event', name='searchText')
+      input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Search for an event', name='searchText')
       button.primary(type='Submit') Search
     pre.
-      #{locals.events}
+      
   .card-container2
     .text
       .header
@@ -37,9 +38,9 @@ head
     img.img-fluid(src='/stylesheets/signupbg.jpg', alt='Responsive image')
     h1.display-3.text-center.text-dark Hi, #{name}!
     form(method='POST', action='/focus', align='center')
-      button.primary(type='Submit') FOCUS
-    br
-    br
+      button.focus(type='Submit') FOCUS
+    pre.
+    
     p Weather
         body
           script(src='https://code.jquery.com/jquery-2.1.3.min.js')
