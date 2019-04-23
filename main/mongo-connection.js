@@ -30,25 +30,27 @@ module.exports = {
       
       
       
-    /*const client = new MongoClient(uri, { useNewUrlParser: true });
-    client.connect(err => {
-      const collection = client.db("SmartPlanner").collection("users");
-      _db = client.db("SmartPlanner");
-      if (err) throw err;
-      return callback(err);
-    });*/
+    
     
   },
 
-   //MongoClient.connect( "mongodb://localhost:27017/SiteBlocker", function( err, db ) {
-    //  _db = db;
-    //  return callback( err );
-    //} );
-  //},
 
   //db getter
   getDb: function() {
     return _db;
+  },
+  
+  getName: function(id, callback){
+      var o_id = new mongo.ObjectID(id);
+      var query = {_id: o_id};
+      _db.collection("users").findOne(query, function(err, result) {
+          console.log("result");
+          console.log(result);
+          if (err) throw err;
+               callback(err, result.name);
+       });
+      
+      
   },
   
   getOID: function(id){

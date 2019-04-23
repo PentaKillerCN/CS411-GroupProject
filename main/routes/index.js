@@ -296,8 +296,13 @@ router.post('/login', function(req, res, next) {
             res.render('login', {errors:'Wrong email or password.'});
           }  else {
             req.session.userId = user._id;
-            console.log("here" + req.session.userId);
-            res.render('main', {events: ""});
+            //get user's name and pass as "name" for use in main.pug
+            connection.getName(req.session.userId, function(err, resName){
+                //console.log("here" + req.session.userId);
+                if (err) throw err;
+                res.render('main', {events: "", name: resName});
+            });
+           
           }
         });
       } else {
