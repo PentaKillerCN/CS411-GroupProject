@@ -205,14 +205,17 @@ router.post('/updateAdd', function(req, res, next) {
         var query = {_id: oid};
         var newsites = { $push: {sites: req.body.blockText} }; //change this to some sort of append. just sites + req.body.blockText?
         console.log(req.body.blockText);
-        db.collection("users").updateOne(query, newsites, function(err, res) {
+        db.collection("users").updateOne(query, newsites, function(err, result) {
             if (err) throw err;
-            console.log("1 document updated");
+            //console.log("1 document updated");
+            db.close();
+            //displays the updated data
+            res.redirect('/getData');
         });
         
     });
 
-    res.render('blockedSites', {events: eventsString});
+    //res.render('blockedSites', {events: eventsString});
 });
 
 
@@ -228,14 +231,17 @@ router.post('/updateDelete', function(req, res, next) {
         var query = {_id: oid};
         
         var deleteQuery = { $pull: {sites: req.body.unblockText} };
-        db.collection("users").updateOne(query, deleteQuery, function(err, res) {
+        db.collection("users").updateOne(query, deleteQuery, function(err, result) {
             if (err) throw err;
-            console.log("1 document deleted");
+            //console.log("1 document deleted");
             db.close();
+            //displays the updated data
+            res.redirect('/getData');
         });
     });
 
-    res.render('blockedSites', {events: eventsString});
+    
+    //res.render('blockedSites', {events: eventsString});
 });
 
 
