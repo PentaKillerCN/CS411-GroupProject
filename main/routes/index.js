@@ -13,8 +13,6 @@ var router = express.Router();
 var eventsString = "";
 
 
-
-
 router.get('/', function(req, res, next) {
     res.render('index');
 });
@@ -57,18 +55,10 @@ function listEvents(auth, callback) {
 
 
 //this runs when user clicks the search button in main
-router.post('/', function(req, res, next) {
-   
+router.post('/getEvents', function(req, res, next) {
     
-    
-    // If modifying these scopes, delete token.json.
     const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-    // The file token.json stores the user's access and refresh tokens, and is
-    // created automatically when the authorization flow completes for the first
-    // time.
     const TOKEN_PATH = 'token.json';
-    
-    
     
     // Load client secrets from a local file.
     fs.readFile('credentials.json', (err, content) => {
@@ -126,60 +116,62 @@ router.post('/', function(req, res, next) {
         });
       });
     }
-
-
-/**
- * Lists the next 10 events on the user's primary calendar.
- * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
- */
-function listEvents(auth, callback, q) {
-	eventsString = "";
-  const calendar = google.calendar({version: 'v3', auth});
-  console.log("test1");
-  console.log(q);
-  calendar.events.list({
-    calendarId: 'primary',
-    timeMin: (new Date()).toISOString(),
-	q:q,
-    maxResults: 10,
-    singleEvents: true,
-    orderBy: 'startTime',
-  }, (err, res) => {
-    if (err) return console.log('The API returned an error: ' + err);
-    const events = res.data.items;
-    if (events.length) {
-      console.log('Upcoming 10 events:');
-      events.map((event, i) => {
-        const start = event.start.dateTime || event.start.date;
-        eventsString += `${start} - ${event.summary}`;
-        eventsString += '\n';
-        //console.log(`${start} - ${event.summary}`);
-      });
-	    sendResults();
-
-    } else {
-      eventsString = 'No upcoming events found.';
-	    sendResults();
+    
+    
+    function listUpcomingEvents(auth, q){
+        listEvents(auth, q, sendResults);
     }
-  });
 
-}
+    /**
+     * Lists the next 10 events on the user's primary calendar.
+     * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+     */
+    function listEvents(auth, q, callback) {
+        eventsString = "";
+      const calendar = google.calendar({version: 'v3', auth});
+      console.log("CALENDAR TEST");
+      console.log(q);
+      calendar.events.list({
+        calendarId: 'primary',
+        timeMin: (new Date()).toISOString(),
+        q:q,
+        maxResults: 10,
+        singleEvents: true,
+        orderBy: 'startTime',
+      }, (err, res) => {
+        if (err) return console.log('The API returned an error: ' + err);
+        const events = res.data.items;
+        if (events.length) {
+          console.log('Upcoming 10 events:');
+          events.map((event, i) => {
+            const start = event.start.dateTime || event.start.date;
+            eventsString += `${start} - ${event.summary}`;
+            eventsString += '\n';
+            //console.log(`${start} - ${event.summary}`);
+          });
+            callback();
 
-function listUpcomingEvents(auth, q){
-	listEvents(auth, sendResults, q);
+        } else {
+          eventsString = 'No upcoming events found.';
+            callback();
+        }
+      });
 
+    }
+    
+    function sendResults(){
+	console.log("SENDRESULTS TEST")
+	res.render('main', { events: eventsString });
 }
 
 });
 
-function sendResults(){
-	//console.log("now")
-	res.render('main', { events: eventsString });
-}
+
 
 
 
 router.post('/add', function(req, res, next) {
+    
     res.render('blockedSites');
 });
 
@@ -205,14 +197,17 @@ router.post('/updateAdd', function(req, res, next) {
         var query = {_id: oid};
         var newsites = { $push: {sites: req.body.blockText} }; //change this to some sort of append. just sites + req.body.blockText?
         console.log(req.body.blockText);
-        db.collection("users").updateOne(query, newsites, function(err, res) {
+        db.collection("users").updateOne(query, newsites, function(err, result) {
             if (err) throw err;
-            console.log("1 document updated");
+            //console.log("1 document updated");
+            db.close();
+            //displays the updated data
+            res.redirect('/getData');
         });
         
     });
 
-    res.render('blockedSites', {events: eventsString});
+    //res.render('blockedSites', {events: eventsString});
 });
 
 
@@ -228,14 +223,17 @@ router.post('/updateDelete', function(req, res, next) {
         var query = {_id: oid};
         
         var deleteQuery = { $pull: {sites: req.body.unblockText} };
-        db.collection("users").updateOne(query, deleteQuery, function(err, res) {
+        db.collection("users").updateOne(query, deleteQuery, function(err, result) {
             if (err) throw err;
-            console.log("1 document deleted");
+            //console.log("1 document deleted");
             db.close();
+            //displays the updated data
+            res.redirect('/getData');
         });
     });
 
-    res.render('blockedSites', {events: eventsString});
+    
+    //res.render('blockedSites', {events: eventsString});
 });
 
 
@@ -298,7 +296,8 @@ router.post('/login', function(req, res, next) {
             res.render('login', {errors:'Wrong email or password.'});
           }  else {
             req.session.userId = user._id;
-            res.render('main');
+            console.log("here" + req.session.userId);
+            res.render('main', {events: ""});
           }
         });
       } else {
@@ -323,6 +322,7 @@ router.get('/register', function(req,res,next){
 router.post('/register', function(req,res,next){
     //connect to mongo db - the function argument is the callback
     connection.connectToServer( function( err ) {
+        var db = connection.getDb();
         if (err) throw err;
         if (req.body.email &&
         req.body.name &&
@@ -334,20 +334,38 @@ router.post('/register', function(req,res,next){
             res.render('register', {errors:'Passwords do not match.'});
           }
 
+          // check whether an email has been used to register an account
+          db.collection("users").findOne({email:req.body.email.toString()}, function(err, res){
+              if (err) throw err;
+              if (res){
+                  console.log("YUP");
+                  console.log(res.email);
+              }
+              else{
+                  console.log("NOPE");
+              }
+          });
 
-          // create object with form input
-          var userData = {
-            email: req.body.email.toLowerCase(),
-            name: req.body.name,
-            password: req.body.password,
-            sites: []
-          };
-          
-          //insert document into mongo
-          connection.insertRecord("users", userData);
-          res.render('main');
-            
 
+          /*if (result.toString() !== req.body.email.toString()) {
+
+
+
+                // create object with form input
+                var userData = {
+                    email: req.body.email.toLowerCase(),
+                    name: req.body.name,
+                    password: req.body.password,
+                    sites: []
+                };
+
+                //insert document into mongo
+                connection.insertRecord("users", userData);
+                res.render('main');
+            }
+          else{
+              res.render('register', {errors: 'Email has been used.'});
+            }*/
       
         } else {
           res.render('register', {errors:'All fields required.'});

@@ -13,17 +13,19 @@ head
   .card-container1
     .header
       h3 Upcoming Events:
-    form(method='POST', action='/')
-      input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Search for an event', name='searchText')
+
+    form(method='POST', action='/getEvents')
       button.primary(type='Submit') Search
+    pre.
+      #{locals.events}
   .card-container2
     .text
       .header
-        h3 Add Blocked Wesbite
+        h3 Add Blocked Website
       h6.one Want to be more productive?
       h6.two Tired of Being Interrupted?
       h6.three Try Our Smart Shield Extension!
-    form(method='POST', action='/add', align='right')
+    form(method='POST', action='/getData', align='right')
       button.primary(type='Submit') Add extension
   .card-container3
     img.img-fluid(src='/stylesheets/signupbg.jpg', alt='Responsive image')
@@ -31,16 +33,6 @@ head
     form(method='POST', action='/focus', align='center')
       button.focus(type='Submit') FOCUS
   pre.
-    
-   
 
 
-    
-
-    
-
-    
-
-    
- 
 
