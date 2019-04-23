@@ -253,15 +253,16 @@ router.post('/removeAll', function(req, res, next) {
         var oid = connection.getOID(req.session.userId);
         var query = {_id: oid};
 
-        var deleteQuery = { $pull: {sites: {} } };
-        db.collection("users").update(query, deleteQuery, function(err, res) {
+        var deleteQuery = { $unset: {sites:1} };
+        db.collection("users").update(query, deleteQuery, function(err, resulte) {
             if (err) throw err;
             console.log("Collection deleted");
             db.close();
+            res.redirect('/getData');
         });
     });
 
-    res.render('blockedSites', {events: eventsString});
+    //res.render('blockedSites', {events: eventsString});
 });
 
 
