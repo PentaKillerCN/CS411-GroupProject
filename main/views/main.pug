@@ -14,6 +14,8 @@ head
         a(href='') Contact
       li
         a(href='') About
+      form(method='GET', action='logout', align='right')
+        button.primary(type='Submit') Logout
   .card-container1
     .header
       h3 Upcoming Events:
@@ -36,4 +38,3 @@ head
     h1.display-3.text-center.text-dark Hi, #{name}!
     form(method='POST', action='/focus', align='center')
       button.primary(type='Submit') FOCUS
-
