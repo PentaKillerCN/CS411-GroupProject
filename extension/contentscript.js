@@ -6,9 +6,8 @@ document.addEventListener("DOMContentLoaded", function(){
     var items = document.getElementById('items');
     if (buttonb){
         buttonb.addEventListener('click', function() {
-            console.log(items.innerHTML);
             //pass the new site to be blocked to background.js
-            chrome.runtime.sendMessage({newSite: items.innerHTML}, function(response) {
+            chrome.runtime.sendMessage({newSite: items.innerHTML.split(',')}, function(response) {
                 //console.log(response.farewell);
                 //todo: parse innterhtml, separate into separate sites. regex?? rn it's treated as one big site lmao
             });

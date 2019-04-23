@@ -30,5 +30,19 @@ head
 pre.
   
 
-
+    body(onload='myFunction()')
+        form(method='POST' action='/updateAdd')
+            input(type='text', placeholder='Type site url here to block' id='blockText' name='blockText')
+            Button(type='Submit' id='blockButton' name='blockButton') Add Site
+        form(method='POST' action='/updateDelete')
+            input(type='text', placeholder='Type site url here to unblock' name='unblockText')
+            Button(type='Submit') Delete Site
+        form(method='POST' action='/removeAll')
+            Button(type='Submit') Remove All
+        <h3>Websites Being Blocked</h3>
+        <p><span id="items"></span></p>
+        //pre
+        //   #{items}
+        //this information is sent to 1) mongodb, to store and update the list of sites to block
+        //and to                      2) the extension, for use in actually blocking the sites
 

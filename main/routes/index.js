@@ -1,5 +1,5 @@
 var express = require('express');
- 
+var mid = require('../middleware');
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
@@ -160,8 +160,15 @@ router.post('/getEvents', function(req, res, next) {
     }
     
     function sendResults(){
-	console.log("SENDRESULTS TEST")
-	res.render('main', { events: eventsString });
+        console.log("SENDRESULTS TEST")
+        connection.connectToServer(function (err) {
+            connection.getName(req.session.userId, function(err, resName){
+                    //console.log("here" + req.session.userId);
+                    if (err) throw err;
+                    res.render('main', {events: eventsString, name: resName});
+            });
+        });
+        //res.render('main', { events: eventsString });
 }
 
 });
@@ -246,15 +253,16 @@ router.post('/removeAll', function(req, res, next) {
         var oid = connection.getOID(req.session.userId);
         var query = {_id: oid};
 
-        var deleteQuery = { $pull: {sites: {} } };
-        db.collection("users").update(query, deleteQuery, function(err, res) {
+        var deleteQuery = { $unset: {sites:1} };
+        db.collection("users").update(query, deleteQuery, function(err, result) {
             if (err) throw err;
             console.log("Collection deleted");
             db.close();
+            res.redirect('/getData');
         });
     });
 
-    res.render('blockedSites', {events: eventsString});
+    //res.render('blockedSites', {events: eventsString});
 });
 
 
@@ -278,7 +286,7 @@ router.get('/logout', function(req, res, next) {
 
 
 //Get /login
-router.get('/login', function(req,res, next) {
+router.get('/login', mid.loggedOut, function(req,res, next) {
   return res.render('login', {title: 'Log In'});
 });
 
@@ -296,8 +304,13 @@ router.post('/login', function(req, res, next) {
             res.render('login', {errors:'Wrong email or password.'});
           }  else {
             req.session.userId = user._id;
-            console.log("here" + req.session.userId);
-            res.render('main', {events: ""});
+            //get user's name and pass as "name" for use in main.pug
+            connection.getName(req.session.userId, function(err, resName){
+                //console.log("here" + req.session.userId);
+                if (err) throw err;
+                res.render('main', {events: "", name: resName});
+            });
+           
           }
         });
       } else {
@@ -313,7 +326,7 @@ router.post('/googlelogin', function(req,res,next){
 });
 
 //Get /register
-router.get('/register', function(req,res,next){
+router.get('/register', mid.loggedOut, function(req,res,next){
   return res.render('register', {title: 'Sign Up'});
 });
 
@@ -335,38 +348,28 @@ router.post('/register', function(req,res,next){
           }
 
           // check whether an email has been used to register an account
-          db.collection("users").findOne({email:req.body.email.toString()}, function(err, res){
+          db.collection("users").findOne({email:req.body.email.toString()}, function(err, result){
               if (err) throw err;
-              if (res){
+              if (result){
                   console.log("YUP");
-                  console.log(res.email);
+                  console.log(result.email);
+                  res.render('register', {errors: 'Email has been used.'});
               }
               else{
                   console.log("NOPE");
+                  // create object with form input
+                  var userData = {
+                        email: req.body.email.toLowerCase(),
+                        name: req.body.name,
+                        password: req.body.password,
+                        sites: []
+                  };
+
+                  //insert document into mongo
+                  connection.insertRecord("users", userData);
+                  res.render('login');
               }
           });
-
-
-          /*if (result.toString() !== req.body.email.toString()) {
-
-
-
-                // create object with form input
-                var userData = {
-                    email: req.body.email.toLowerCase(),
-                    name: req.body.name,
-                    password: req.body.password,
-                    sites: []
-                };
-
-                //insert document into mongo
-                connection.insertRecord("users", userData);
-                res.render('main');
-            }
-          else{
-              res.render('register', {errors: 'Email has been used.'});
-            }*/
-      
         } else {
           res.render('register', {errors:'All fields required.'});
         }
@@ -409,7 +412,7 @@ router.post('/tologin', function(req, res, next){
    
 });
 
-router.get('/main', function(req, res, next){
+router.get('/main', mid.requiresLogin, function(req, res, next){
     res.render('main');   
 });
 router.post('/main', function(req, res, next){
