@@ -160,8 +160,15 @@ router.post('/getEvents', function(req, res, next) {
     }
     
     function sendResults(){
-	console.log("SENDRESULTS TEST")
-	res.render('main', { events: eventsString });
+        console.log("SENDRESULTS TEST")
+        connection.connectToServer(function (err) {
+            connection.getName(req.session.userId, function(err, resName){
+                    //console.log("here" + req.session.userId);
+                    if (err) throw err;
+                    res.render('main', {events: eventsString, name: resName});
+            });
+        });
+        //res.render('main', { events: eventsString });
 }
 
 });
@@ -352,7 +359,7 @@ router.post('/register', function(req,res,next){
           });
 
 
-          /*if (result.toString() !== req.body.email.toString()) {
+          //if (result.toString() !== req.body.email.toString()) {
 
 
 
@@ -366,11 +373,11 @@ router.post('/register', function(req,res,next){
 
                 //insert document into mongo
                 connection.insertRecord("users", userData);
-                res.render('main');
-            }
-          else{
+                res.render('login');
+            //}
+          //else{
               res.render('register', {errors: 'Email has been used.'});
-            }*/
+           /// }*/
       
         } else {
           res.render('register', {errors:'All fields required.'});
