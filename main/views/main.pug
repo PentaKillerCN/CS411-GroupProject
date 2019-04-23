@@ -38,3 +38,97 @@ head
     h1.display-3.text-center.text-dark Hi, #{name}!
     form(method='POST', action='/focus', align='center')
       button.primary(type='Submit') FOCUS
+
+    p Weather
+      body
+        script(src='https://code.jquery.com/jquery-2.1.3.min.js')
+        script.
+          $(document).ready(function () {
+
+            // Get Location
+            navigator.geolocation.getCurrentPosition(success, error);
+
+            function success(pos) {
+              var lat = pos.coords.latitude;
+              var long = pos.coords.longitude;
+              weather(lat, long);
+            }
+
+            function error() {
+              console.log('There was an error');
+            }
+
+            // Call Weather
+            function weather(lat, long) {
+              var URL = `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
+
+              $.getJSON(URL, function (data) {
+                updateDOM(data);
+              });
+            }
+
+            // Update Dom
+            function updateDOM(data) {
+              var city = data.name;
+              var temp = Math.round(data.main.temp_max);
+              var desc = data.weather[0].description;
+              var icon = data.weather[0].icon;
+
+              $('#city').html(city);
+              $('#temp').html(temp);
+              $('#desc').html(desc);
+              $('#icon').attr('src', icon);
+            }
+          });
+        .container
+          h2#city New York
+          .middle
+            img#icon(src='', alt='icon')
+            .degrees
+              h1#temp 19
+              span °
+            h3#desc Sunny
+      style.
+        h1, h2, h3, span {
+          margin: 0;
+        }
+
+        h1 {
+          font-size: 1rem;
+        }
+
+        h2 {
+          font-size: 1rem;
+        }
+
+        h3 {
+          font-size: 1rem;
+        }
+
+        span {
+          font-size: 0.5rem;
+          font-weight: 60;
+        }
+
+        .container {
+          max-width: 120px;
+          height: 20vh;
+          border: 1px solid black;
+          margin: 0 auto;
+          text-align: center;
+          display: grid;
+          grid-template-rows: 20% 80%;
+          padding: 25px 5px;
+        }
+
+        .degrees {
+          display: grid;
+          grid-template-columns: auto auto;
+          justify-content: center;
+          margin-left: 0.5rem;
+        }
+
+        img {
+          width: 30px;
+          filter: grayscale(100%);
+        }
