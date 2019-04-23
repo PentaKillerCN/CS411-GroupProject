@@ -15,6 +15,7 @@ chrome.runtime.onMessage.addListener(
                 "from a content script:" + sender.tab.url :
                 "from the extension");
                 
+
                 chrome.storage.sync.set({'block': JSON.stringify({urls: ['*://www.' + request.newSite[0] +'/*']})}, function(){
                     addListener();
                 });
