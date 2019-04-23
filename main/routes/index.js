@@ -179,6 +179,7 @@ function sendResults(){
 
 
 router.post('/add', function(req, res, next) {
+    
     res.render('blockedSites');
 });
 
