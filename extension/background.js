@@ -14,21 +14,32 @@ chrome.runtime.onMessage.addListener(
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
-                localStorage.setItem('block', JSON.stringify({urls: ['*://www.' + request.newSite +'/*']})); //switch to chrome sync storage
+                
+                chrome.storage.sync.set({'block': JSON.stringify({urls: ['*://www.' + request.newSite[0] +'/*']})}, function(){
+                    addListener();
+                });
                 //request.newSite gives the message value
-                addListener();
+                
                 
   });
 
 //this variable is a list of sites to be blocked, and is updated when addListener is called
 var blockedUrls = function () {
-    if (localStorage.block) {
-        var jobj = JSON.parse(localStorage.block);
-        console.log(jobj['urls'][0]);
-        return [jobj['urls'][0]];
-    } else {
-        return ['*://www.microsoft.com/*'];
-    }
+        chrome.storage.sync.get('block', function(result) {
+            if (typeof result.block === 'undefined') {
+                //blocks is not yet set
+                var jobj = ["*://www.whatever.com/*"];
+                return [jobj[0]];
+                console.log("not set");
+            }
+            else{
+                var jobj = JSON.parse(result.block);
+                console.log('SET');
+                console.log(jobj['urls'][0]);
+                return [jobj['urls'][0]];
+            } 
+        });
+        return ["*://www.whatever.com/*"];
 }
 
 //function to update the list of blocked sites whenever one is added
