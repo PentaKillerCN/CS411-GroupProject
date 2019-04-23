@@ -1,7 +1,7 @@
 var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 var mpswd = require('./mongopswd.js').pswd;
-var muname = require('./mongopswd.js').pswd;
+var muname = require('./mongopswd.js').uname;
 const assert = require('assert');
 console.log("mpswd: " + mpswd);
 
