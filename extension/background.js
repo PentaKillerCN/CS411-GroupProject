@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
-        addListener();
+        addListener("*://www.whatever.com/*");
     }
 });
 
@@ -15,7 +15,7 @@ chrome.runtime.onMessage.addListener(
                 "from a content script:" + sender.tab.url :
                 "from the extension");
                 
-                var jsonStr = '{"urls":["doesntexist.com"]}';
+                var jsonStr = '{"urls":["*://www.whatever.com/*"]}';
 
                 var obj = JSON.parse(jsonStr);
                 
@@ -28,24 +28,28 @@ chrome.runtime.onMessage.addListener(
                 
                 
                 
-                jsonStr = JSON.stringify(obj);
-                console.log("json:");
-                console.log(jsonStr);
+                //jsonStr = JSON.stringify(obj);
+                //console.log("json:");
+                //console.log(jsonStr);
                 
                
+                for (var k=0;k<obj['urls'].length;k++){
+                    addListener(obj['urls'][k]);
+                }
                 
-                chrome.storage.sync.set({'block': jsonStr}, function(){
-                    //console.log(siteArr);
-                    addListener();
-                });
+                //chrome.storage.sync.set({'block': jsonStr}, function(){
+                    //console.log(obj['urls'][k]);
+                    
+                //});
+                
                 //request.newSite gives the message value
                 
                 
   });
-
+/* 
 //this variable is a list of sites to be blocked, and is updated when addListener is called
-var blockedUrls = function () {
-        chrome.storage.sync.get('block', function(result) {
+function blockedUrls() {
+        chrome.storage.sync.get(['block'], function(result) {
             if (typeof result.block === 'undefined') {
                 //blocks is not yet set
                 var jobj = ["*://www.whatever.com/*"];
@@ -58,20 +62,20 @@ var blockedUrls = function () {
                 //console.log(jobj['urls']);
                 //for i in jobj['urls']
                 var xt = JSON.parse(result.block);
-                console.log(JSON.stringify(xt.urls));
-                return JSON.stringify(xt.urls);
+                console.log(xt.urls);
+                return xt.urls;
                 //return JSON.stringify(jobj['urls']);
             } 
         });
         return ["*://www.whatever.com/*"];
-}
+} */
 
 //function to update the list of blocked sites whenever one is added
-function addListener(){
+function addListener(newUrl){
     chrome.webRequest.onBeforeRequest.addListener(
       function(){ return {cancel: true}; },
       {
-        urls: blockedUrls()
+        urls: [newUrl]
       },
       ["blocking"]
     );
