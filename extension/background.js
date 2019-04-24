@@ -45,7 +45,7 @@ chrome.runtime.onMessage.addListener(
 
 //this variable is a list of sites to be blocked, and is updated when addListener is called
 var blockedUrls = function () {
-        chrome.storage.sync.get('block', function(result) {
+        chrome.storage.sync.get(['block'], function(result) {
             if (typeof result.block === 'undefined') {
                 //blocks is not yet set
                 var jobj = ["*://www.whatever.com/*"];
@@ -68,11 +68,22 @@ var blockedUrls = function () {
 
 //function to update the list of blocked sites whenever one is added
 function addListener(){
+    // var pattern = "https://www.yahoo.com/"
     chrome.webRequest.onBeforeRequest.addListener(
+      redirect,
       function(){ return {cancel: true}; },
       {
-        urls: blockedUrls()
+        urls: [blockedUrls()]//pattern]
       },
       ["blocking"]
     );
+}
+
+// The function I searched online, but I am not sure whether it helps
+function redirect(requestDetails) {
+  console.log("Redirecting: " + requestDetails.url);
+  return {
+      // Redirect to google.com. It could be redirected to our website.
+    redirectUrl: "https://google.com"
+  };
 }
