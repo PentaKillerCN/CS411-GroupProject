@@ -129,11 +129,14 @@ router.post('/getEvents', function(req, res, next) {
     function listEvents(auth, q, callback) {
         eventsString = "";
       const calendar = google.calendar({version: 'v3', auth});
+      var d = new Date();
+      d.setMonth(d.getMonth()+1);
       console.log("CALENDAR TEST");
       console.log(q);
       calendar.events.list({
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
+        timeMax: (d).toISOString(),
         q:q,
         maxResults: 10,
         singleEvents: true,

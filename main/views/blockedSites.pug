@@ -29,6 +29,17 @@ body(onload='myFunction()')
           button#blockButton.primary3(type='Submit', name='blockButton') Add Site
         h3 Websites Being Blocked
           <p><span id="items"></span></p>
+            form(method='POST', action='/getlength')
+                h6.four How long do you wnat to block those websites?
+                input(type='text', name='getlength', list='timeperiod')
+                datalist#timeperiod
+                    option(value='a week')
+                    option(value='two weeks')
+                    option(value='three weeks')
+                    option(value='four weeks')
+                    option(value='forever')
+                button.primary5(type='Submit') Enter
+
      
     
     .card-container5
