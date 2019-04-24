@@ -15,8 +15,27 @@ chrome.runtime.onMessage.addListener(
                 "from a content script:" + sender.tab.url :
                 "from the extension");
                 
+                var jsonStr = '{"urls":["doesntexist.com"]}';
 
-                chrome.storage.sync.set({'block': JSON.stringify({urls: ['*://www.' + request.newSite[0] +'/*']})}, function(){
+                var obj = JSON.parse(jsonStr);
+                
+                //add url matching patterns to the urls from user input
+                for (var i = 0; i < request.newSite.length; i++){
+                    obj['urls'].push( '*://www.' + request.newSite[i] + '/*');
+                }
+                
+                //obj['urls'].push(request.newSite);
+                
+                
+                
+                jsonStr = JSON.stringify(obj);
+                console.log("json:");
+                console.log(jsonStr);
+                
+               
+                
+                chrome.storage.sync.set({'block': jsonStr}, function(){
+                    //console.log(siteArr);
                     addListener();
                 });
                 //request.newSite gives the message value
@@ -34,10 +53,14 @@ var blockedUrls = function () {
                 console.log("not set");
             }
             else{
-                var jobj = JSON.parse(result.block);
-                console.log('SET');
-                console.log(jobj['urls'][0]);
-                return [jobj['urls'][0]];
+                //var jobj = JSON.parse(result.block);
+                //console.log('SET');
+                //console.log(jobj['urls']);
+                //for i in jobj['urls']
+                var xt = JSON.parse(result.block);
+                console.log(JSON.stringify(xt.urls));
+                return JSON.stringify(xt.urls);
+                //return JSON.stringify(jobj['urls']);
             } 
         });
         return ["*://www.whatever.com/*"];
