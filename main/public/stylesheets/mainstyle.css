@@ -230,6 +230,26 @@ button.primary:hover {
 	margin-right: 10px;
 }
 
+button.logout {
+	background-color: rgba(25,29,33,0.5);
+	border: 1px solid transparent;
+	border-radius: 8px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	padding: 12px 25px;
+}
+
+button.logout:hover{
+	background-color: rgba(25,29,33);
+	border: 1px solid transparent;
+	border-radius: 8px;
+	color: white;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	padding: 12px 25px;
+}
+
 button.focus {
 	background-color: #e85a71;
 	border: 1px solid #e85a71;
