@@ -16,7 +16,7 @@ head
           div.form-group
             label(for='password') Password
             input.form-control(type='password' id='password' placeholder='password' name='password')
-          button.btn.btn-primary(type='submit') Log in
+          button.btn.btn-dark(type='submit') Log in
             title Google SignIn
             link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')
             meta(name='google-signin-client_id', content='63389089138-gcn0kfpp3574epv1p3v41341fr1l4hud.apps.googleusercontent.com')
@@ -25,15 +25,15 @@ head
             script(src='../routes/googlelogin.js')
             style.
               .g-signin2 {
-                margin-left: 200px;
-                margin-right: 200px;
+                margin-left: 0px;
+                margin-right: 0px;
               }
 
               .data {
                 display: none;
               }
         form(method='POST', action='/register')
-          button.btn.btn-primary(type='submit') Sign up
+          button.btn.btn-dark(type='submit') Sign up
         pre #{errors}
           body
             .g-signin2(data-onsuccess='onSignIn')

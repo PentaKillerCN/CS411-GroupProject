@@ -453,5 +453,23 @@ img{
 
 }
 
+.container {
+                    max-width: 120px;
+                    height: 20vh;
+                    border: 1px solid black;
+                    margin: 0 auto;
+                    text-align: center;
+                    display: grid;
+                    grid-template-rows: 20% 80%;
+                    padding: 25px 5px;
+                }
+
+.degrees {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    justify-content: center;
+                    margin-left: 0.5rem;
+                }
+
 
 

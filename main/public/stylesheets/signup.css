@@ -13,3 +13,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+button.btn.btn-dark{
+	margin-top: 10px;
+}
