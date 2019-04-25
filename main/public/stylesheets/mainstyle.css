@@ -488,8 +488,9 @@ button.primary4 {
 	padding: 6px 18px;
 	margin-left: 20px;
 
-	top:45%;
-	left:30%;
+
+	top:48%;
+	left:11%;
 
 
 }
@@ -506,8 +507,8 @@ button.primary4:hover {
 	padding: 6px 18px;
 	margin-left: 20px;
 
-	top:45%;
-	left:30%;
+	top:48%;
+	left:11%;
 
 
 }
@@ -522,11 +523,11 @@ button.primary5 {
 	font-family: Montserrat, sans-serif;
 	font-weight: 500;
 	font-size: 20px;
-	padding: 6px 18px;
+	padding: 8px 20px;
 	margin-left: 20px;
 
-	top: 70%;
-	left:30%;
+	top: 77%;
+	left:12%;
 
 
 }
@@ -543,8 +544,8 @@ button.primary5:hover {
 	padding: 6px 18px;
 	margin-left: 20px;
 
-	top: 70%;
-	left:30%;
+	top: 77%;
+	left:12%;
 
 
 }
