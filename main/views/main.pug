@@ -14,7 +14,7 @@ head
         button.logout(type='Submit') Logout
   .card-container1
     .header
-      h3.text-dark Upcoming Events:
+      h3.text-dark Upcoming Events in this Month:
     form(method='POST', action='/getEvents')
       input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Search for an event', name='searchText')
       button.primary(type='Submit') Search
@@ -52,7 +52,7 @@ head
         }
         // Call Weather
         function weather(lat, long) {
-        var URL =
+        var URL = `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
         $.getJSON(URL, function(data) {
         updateDOM(data);
         });
@@ -70,12 +70,12 @@ head
         }
         });
       .container
-        h2#city New York
+        h2#city
         .middle
           img#icon(src='', alt='icon')
           .degrees
-            h1#temp 19
+            h1#temp
             span &deg;
-          h3#desc Sunny
+          h3#desc
 pre.
   

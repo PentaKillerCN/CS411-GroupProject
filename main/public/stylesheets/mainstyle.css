@@ -108,6 +108,18 @@ h6.three {
 	
 }
 
+h6.four {
+	margin: 5px 0;
+	text-transform: uppercase;
+	color:black;
+	font-family: "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	position: relative;
+	margin-top: 110px;
+	top:40%;
+	left:0%;
+
+
+}
 
 p {
 	font-size: 14px;
@@ -460,6 +472,79 @@ button.primary3:hover {
 
 	top: 50%;
 	left:10%;
+
+
+}
+button.primary4 {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #CBA6C3;
+	border: 1px solid #CBA6C3;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top:45%;
+	left:30%;
+
+
+}
+button.primary4:hover {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #e85a71;
+    border: 1px solid #e85a71;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top:45%;
+	left:30%;
+
+
+}
+
+button.primary5 {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #CBA6C3;
+	border: 1px solid #CBA6C3;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top: 70%;
+	left:30%;
+
+
+}
+button.primary5:hover {
+	position: fixed;
+	margin-top: 30px;
+	background-color: #e85a71;
+    border: 1px solid #e85a71;
+	border-radius: 3px;
+	color: #E0E3DA;
+	font-family: Montserrat, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 6px 18px;
+	margin-left: 20px;
+
+	top: 70%;
+	left:30%;
 
 
 }
