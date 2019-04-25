@@ -4,9 +4,9 @@ chrome.runtime.onInstalled.addListener(function(details){
     }
 });
 
-//todo: will have to get the block list from the table displayed on the page dom lol
-//and actually iterate over it rather than just get the one item
-
+//todo: get time frame of blocking, and dont block if its not within that time
+var today = new Date;
+//var blockDate = whatever;
 
 //listener to listen for messages (new sites) from contentscript.js
 chrome.runtime.onMessage.addListener(
@@ -24,27 +24,10 @@ chrome.runtime.onMessage.addListener(
                     obj['urls'].push( '*://www.' + request.newSite[i] + '/*');
                 }
                 
-                //obj['urls'].push(request.newSite);
-                
-                
-                
-                //jsonStr = JSON.stringify(obj);
-                //console.log("json:");
-                //console.log(jsonStr);
-                
                
                 for (var k=0;k<obj['urls'].length;k++){
                     addListener(obj['urls'][k]);
-                }
-                
-                //chrome.storage.sync.set({'block': jsonStr}, function(){
-                    //console.log(obj['urls'][k]);
-                    
-                //});
-                
-                //request.newSite gives the message value
-                
-                
+                }                
   });
 /* 
 //this variable is a list of sites to be blocked, and is updated when addListener is called
@@ -70,13 +53,38 @@ function blockedUrls() {
         return ["*://www.whatever.com/*"];
 } */
 
-//function to update the list of blocked sites whenever one is added
+
+
+
+function callback_named() {
+    return {cancel: true};
+}
+
 function addListener(newUrl){
+    chrome.webRequest.onBeforeRequest.addListener(callback_named, {urls: [newUrl]},["blocking"]);
+}
+
+
+var now = new Date();
+
+if (today < now.setDate(now.getDate()+7)){
+    console.log("yes");
+    chrome.webRequest.onBeforeRequest.removeListener(callback_named);
+}
+console.log("today: ", today);
+console.log("today + 7: ", now.getDate());
+
+
+//function to update the list of blocked sites whenever one is added
+/* function addListener(newUrl){
+    
+    
     chrome.webRequest.onBeforeRequest.addListener(
       function(){ return {cancel: true}; },
       {
         urls: [newUrl]
       },
       ["blocking"]
+      
     );
-}
+} */
