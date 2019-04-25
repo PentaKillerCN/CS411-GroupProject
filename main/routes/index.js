@@ -363,11 +363,13 @@ router.post('/register', function(req,res,next){
               else{
                   console.log("NOPE");
                   // create object with form input
+                  
                   var userData = {
                         email: req.body.email.toLowerCase(),
                         name: req.body.name,
                         password: req.body.password,
-                        sites: []
+                        sites: [],
+                        length: new Date()
                   };
 
                   //insert document into mongo
@@ -418,7 +420,13 @@ router.post('/tologin', function(req, res, next){
 });
 
 router.get('/main', mid.requiresLogin, function(req, res, next){
-    res.render('main');   
+    connection.connectToServer(function (err) {
+            connection.getName(req.session.userId, function(err, resName){
+                    //console.log("here" + req.session.userId);
+                    if (err) throw err;
+                    res.render('main', {events: eventsString, name: resName});
+            });
+        });  
 });
 router.post('/main', function(req, res, next){
     res.render('main');   
@@ -454,7 +462,16 @@ router.post('/getLength', function(req, res, next){
     else if (glen == "forever"){
         d.setDate(d.getDate()+365);
     }
-    res.render('blockedSites');
+   
+    
+    connection.connectToServer(function (err) {
+            connection.getName(req.session.userId, function(err, resName){
+                    if (err) throw err;
+                    connection.insertLength(req.session.userId, d);
+                    res.render('blockedSites');
+            });
+     
+        });
    
 });
 

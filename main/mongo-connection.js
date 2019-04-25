@@ -3,11 +3,8 @@ var MongoClient = require('mongodb').MongoClient;
 var mpswd = require('./mongopswd.js').pswd;
 var muname = require('./mongopswd.js').uname;
 const assert = require('assert');
-console.log("mpswd: " + mpswd);
 
 
-//const uri = "mongodb+srv://joe:" + String(mpswd) + "@cluster0-rya5t.gcp.mongodb.net/test?retryWrites=true";
-//const uri = "mongodb+srv://joe:mypassword@cluster0-rya5t.gcp.mongodb.net/test?retryWrites=true";
 
 var uri = "mongodb://" + muname +":" + mpswd + "@cluster0-shard-00-00-rya5t.gcp.mongodb.net:27017,cluster0-shard-00-01-rya5t.gcp.mongodb.net:27017,cluster0-shard-00-02-rya5t.gcp.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
 
@@ -26,12 +23,7 @@ module.exports = {
       _db = client.db("SmartPlanner");
       return callback(err);
     });
-    
-      
-      
-      
-    
-    
+       
   },
 
 
@@ -69,17 +61,31 @@ module.exports = {
   
   //function used to authenticate users upon log-in attempt
   authenticate: function(email, pswd, callback){
-       var query = { email: email, password:pswd}; //is password a keyword? problem?
-       console.log(email);
-       console.log(pswd);
+       var query = { email: email, password:pswd};
            _db.collection("users").findOne(query, function(err, result) {
-               console.log("result");
-               console.log(result);
                 if (err) throw err;
-                    callback(err, result);
+                callback(err, result);
             });
-    
-
+  },
+  
+  //inserts the length they want to block websites before an event
+  insertLength: function(uuid, len){
+        var oidd = new mongo.ObjectID(uuid);
+        var query = {_id: oidd};
+        var update = {$set: {length: len} };
+        _db.collection("users").update(query, update);
+  }
+  
+  //inserts the length they want to block websites before an event
+  getLength : function(uuid, callback){
+       var oidd = new mongo.ObjectID(uuid);
+       var query = {_id: oidd};
+       var options = {$project: {length:1}};
+      _db.collection("users").findOne(query, options, function(err, result){
+          if (err) throw err;
+          return result;
+          
+      });
   }
   
 };
