@@ -12,6 +12,8 @@ var router = express.Router();
 
 var eventsString = "";
 
+var d = new Date();
+console.log(d);
 
 router.get('/', function(req, res, next) {
     res.render('index');
@@ -82,7 +84,7 @@ router.post('/getEvents', function(req, res, next) {
       fs.readFile(TOKEN_PATH, (err, token) => {
         if (err) return getAccessToken(oAuth2Client, callback);
         oAuth2Client.setCredentials(JSON.parse(token));
-        callback(oAuth2Client, req.body.searchText);
+        callback(oAuth2Client, req.body.searchText, d);
         //console.log(req.body.searchText);
       });
     }
@@ -118,21 +120,21 @@ router.post('/getEvents', function(req, res, next) {
     }
     
     
-    function listUpcomingEvents(auth, q){
-        listEvents(auth, q, sendResults);
+    function listUpcomingEvents(auth, q, d){
+        listEvents(auth, q, d, sendResults);
     }
 
     /**
      * Lists the next 10 events on the user's primary calendar.
      * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
      */
-    function listEvents(auth, q, callback) {
+    function listEvents(auth, q, d, callback) {
         eventsString = "";
       const calendar = google.calendar({version: 'v3', auth});
-      var d = new Date();
-      d.setMonth(d.getMonth()+1);
-      console.log("CALENDAR TEST");
-      console.log(q);
+      //var d = new Date();
+      //d.setMonth(d.getMonth()+1);
+      //console.log("CALENDAR TEST");
+      //console.log(q);
       calendar.events.list({
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
@@ -432,6 +434,28 @@ router.post('/focus', function(req, res, next){
 
 router.post('/getdata', function(req, res, next){
     res.render('blockedSites');
+});
+
+//get the amount of time they want to block sites for
+router.post('/getLength', function(req, res, next){
+    var glen = (req.body.getlength);
+    if (glen == "a week" ){
+        d.setDate(d.getDate()+7); //d is a global variable used in listEvents
+    }
+    else if (glen == "two weeks"){
+        d.setDate(d.getDate()+14);
+    }
+    else if (glen == "three weeks"){
+        d.setDate(d.getDate()+21);
+    }
+    else if (glen == "four weeks"){
+        d.setDate(d.getDate()+28);
+    }
+    else if (glen == "forever"){
+        d.setDate(d.getDate()+365);
+    }
+    res.render('blockedSites');
+   
 });
 
 
