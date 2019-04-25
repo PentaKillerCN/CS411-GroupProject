@@ -14,13 +14,13 @@ head
         button.logout(type='Submit') Logout
   .card-container1
     .header
-      h3.text-dark Upcoming Events in this Month:
+      h3.text-dark Upcoming Events in a Month:
     form(method='POST', action='/getEvents')
       input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Search for an event', name='searchText')
       button.primary(type='Submit') Search
     pre.
       #{locals.events}
-      
+
   .card-container2
     .text
       .header
@@ -35,47 +35,53 @@ head
     h1.display-4.text-center.text-dark Hi,#{name}!
     form(method='POST', action='/focus', align='center')
       button.focus(type='Submit') FOCUS
-    
-    .weather
-      script(src='https://code.jquery.com/jquery-2.1.3.min.js')
-      script.
-        $(document).ready(function() {
-        // Get Location
-        navigator.geolocation.getCurrentPosition(success, error);
-        function success(pos) {
-        var lat = pos.coords.latitude;
-        var long = pos.coords.longitude;
-        weather(lat, long);
-        }
-        function error() {
-        console.log('There was an error');
-        }
-        // Call Weather
-        function weather(lat, long) {
-        var URL = `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
-        $.getJSON(URL, function(data) {
-        updateDOM(data);
-        });
-        }
-        // Update Dom
-        function updateDOM(data) {
-        var city = data.name;
-        var temp = Math.round(data.main.temp_max);
-        var desc = data.weather[0].description;
-        var icon = data.weather[0].icon;
-        $('#city').html(city);
-        $('#temp').html(temp);
-        $('#desc').html(desc);
-        $('#icon').attr('src', icon);
-        }
-        });
-      .container
-        h2#city
-        .middle
-          img#icon(src='', alt='icon')
-          .degrees
-            h1#temp
-            span &deg;
-          h3#desc
-pre.
-  
+
+      .weather
+        script(src='https://code.jquery.com/jquery-2.1.3.min.js')
+        script.
+          $(document).ready(function () {
+
+            // Get Location
+            navigator.geolocation.getCurrentPosition(success, error);
+
+            function success(pos) {
+              var lat = pos.coords.latitude;
+              var long = pos.coords.longitude;
+              weather(lat, long);
+            }
+
+            function error() {
+              console.log('There was an error');
+            }
+
+            // Call Weather
+            function weather(lat, long) {
+              var URL = `https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${long}`;
+
+              $.getJSON(URL, function (data) {
+                updateDOM(data);
+              });
+            }
+
+            // Update Dom
+            function updateDOM(data) {
+              var city = data.name;
+              var temp = Math.round(data.main.temp_max);
+              var desc = data.weather[0].description;
+              var icon = data.weather[0].icon;
+
+              $('#city').html(city);
+              $('#temp').html(temp);
+              $('#desc').html(desc);
+              $('#icon').attr('src', icon);
+            }
+          });
+        .container
+          h6.five#city
+          .middle
+            img#icon(src='', alt='icon')
+            .degrees
+              h6.five#temp
+              span &deg;
+            h6.five#desc
+      pre.

@@ -74,7 +74,7 @@ module.exports = {
         var query = {_id: oidd};
         var update = {$set: {length: len} };
         _db.collection("users").update(query, update);
-  }
+  },
   
   //inserts the length they want to block websites before an event
   getLength : function(uuid, callback){
