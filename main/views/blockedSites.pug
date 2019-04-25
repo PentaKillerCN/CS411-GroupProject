@@ -2,6 +2,7 @@ doctype html
 
 head
   link(rel='stylesheet', type='text/css', href='stylesheets/mainstyle.css')
+  link(rel='stylesheet', type='text/css', href='stylesheets/block.css')
   link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
 .p-3.mb-2.bg-transparent
   h1.display-5.text-center.text-dark SMART SHIELD
@@ -20,6 +21,7 @@ head
   
 
 body(onload='myFunction()')
+    
     .card-container4
       .header1
         h3 READY TO FOCUS
@@ -51,9 +53,10 @@ body(onload='myFunction()')
       form(method='POST', action='/removeAll')
         button.primary2(type='Submit') Remove All
     pre.
-    
-    //pre
-    //   #{items}
-    //this information is sent to 1) mongodb, to store and update the list of sites to block
-    //and to                      2) the extension, for use in actually blocking the sites
+
+    img.bg(src='/stylesheets/b1.jpg', alt='Responsive image')
+
+
+
+
 
