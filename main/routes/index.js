@@ -127,6 +127,8 @@ router.post('/getEvents', function(req, res, next) {
     function listEvents(auth, q, d, callback) {
         eventsString = "";
       const calendar = google.calendar({version: 'v3', auth});
+      var d = new Date();
+      d.setMonth(d.getMonth()+1);
       calendar.events.list({
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
@@ -161,7 +163,6 @@ router.post('/getEvents', function(req, res, next) {
                     res.render('main', {events: eventsString, name: resName});
             });
         });
-        //res.render('main', { events: eventsString });
 }
 
 });

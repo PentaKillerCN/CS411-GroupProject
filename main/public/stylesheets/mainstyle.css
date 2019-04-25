@@ -120,6 +120,18 @@ h6.four {
 
 
 }
+h6.five {
+	margin: 5px;
+	text-transform: uppercase;
+	color:black;
+	font-family: "Open Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	position: relative;
+	margin-top: 10px;
+	margin-left: 50px;
+	top:5%;
+	left:0%;
+}
+
 
 p {
 	font-size: 14px;
@@ -600,4 +612,9 @@ img.bg{
 #icon{
 	width: 30px;
 	filter: grayscale(0%);
+}
+
+{
+    padding: 0px;
+    margin: 0px;
 }
