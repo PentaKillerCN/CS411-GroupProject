@@ -13,7 +13,6 @@ var router = express.Router();
 var eventsString = "";
 
 var d = new Date();
-console.log(d);
 
 router.get('/', function(req, res, next) {
     res.render('index');
@@ -259,6 +258,7 @@ router.post('/removeAll', function(req, res, next) {
         var query = {_id: oid};
 
         var deleteQuery = { $unset: {sites:1} };
+        
         db.collection("users").update(query, deleteQuery, function(err, result) {
             if (err) throw err;
             console.log("Collection deleted");
@@ -410,6 +410,13 @@ router.get('/getData', function(req, res, next){
 });
 
 
+//called from extension only
+router.get('/exmongo', function(req,res,next){
+    res.send("hi");
+   
+});
+
+
 
 
 
@@ -448,7 +455,10 @@ router.post('/getdata', function(req, res, next){
 router.post('/getLength', function(req, res, next){
     var glen = (req.body.getlength);
     if (glen == "a week" ){
-        d.setDate(d.getDate()+7); //d is a global variable used in listEvents
+        var g = new Date();
+        console.log("g: ", g);
+        d.setDate(g.getDate()+7); //d is a global variable used in listEvents
+        console.log("d: ", d);
     }
     else if (glen == "two weeks"){
         d.setDate(d.getDate()+14);
