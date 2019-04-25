@@ -49,7 +49,7 @@ body(onload='myFunction()')
         h3 TAKE A BREAK
       form(method='POST', action='/updateDelete')
         input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Type site url here to unblock', name='unblockText')
-        button.primary1(type='Submit') Delete Site
+        button.primary1(type='Submit' id='unblock1Button' name='unblock1Button') Delete Site
       form(method='POST', action='/removeAll')
         button.primary2(type='Submit') Remove All
     pre.

@@ -1,12 +1,12 @@
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
         addListener("*://www.whatever.com/*");
-    }
+    }    
 });
 
-//todo: will have to get the block list from the table displayed on the page dom lol
-//and actually iterate over it rather than just get the one item
-
+//todo: get time frame of blocking, and dont block if its not within that time
+var today = new Date;
+//var blockDate = whatever;
 
 //listener to listen for messages (new sites) from contentscript.js
 chrome.runtime.onMessage.addListener(
@@ -15,37 +15,38 @@ chrome.runtime.onMessage.addListener(
                 "from a content script:" + sender.tab.url :
                 "from the extension");
                 
-                var jsonStr = '{"urls":["*://www.whatever.com/*"]}';
+                if (request.newSite){
+                
+                    var jsonStr = '{"urls":["*://www.whatever.com/*"]}';
 
-                var obj = JSON.parse(jsonStr);
-                
-                //add url matching patterns to the urls from user input
-                for (var i = 0; i < request.newSite.length; i++){
-                    obj['urls'].push( '*://www.' + request.newSite[i] + '/*');
-                }
-                
-                //obj['urls'].push(request.newSite);
-                
-                
-                
-                //jsonStr = JSON.stringify(obj);
-                //console.log("json:");
-                //console.log(jsonStr);
-                
-               
-                for (var k=0;k<obj['urls'].length;k++){
-                    addListener(obj['urls'][k]);
-                }
-                
-                //chrome.storage.sync.set({'block': jsonStr}, function(){
-                    //console.log(obj['urls'][k]);
+                    var obj = JSON.parse(jsonStr);
                     
-                //});
+                    //add url matching patterns to the urls from user input
+                    for (var i = 0; i < request.newSite.length; i++){
+                        obj['urls'].push( '*://www.' + request.newSite[i] + '/*');
+                    } 
+                   
+                    for (var k=0;k<obj['urls'].length;k++){
+                        addListener(obj['urls'][k]);
+                    }
+                }
                 
-                //request.newSite gives the message value
+                 var now = new Date();
+                if (request.yess == "hello"){
+                    if (today < now.setDate(now.getDate()+7)){
+                            console.log("yes");
+                        for (var l=0;l<5;l++){
+                            chrome.webRequest.onBeforeRequest.removeListener(callback_named);
+                        }
+                             
+                    }
+                }
                 
                 
-  });
+  });   
+  
+  
+ 
 /* 
 //this variable is a list of sites to be blocked, and is updated when addListener is called
 function blockedUrls() {
@@ -70,13 +71,29 @@ function blockedUrls() {
         return ["*://www.whatever.com/*"];
 } */
 
-//function to update the list of blocked sites whenever one is added
+
+
+
+
+function callback_named() {
+    return {cancel: true};
+}
+
 function addListener(newUrl){
+    chrome.webRequest.onBeforeRequest.addListener(callback_named, {urls: [newUrl]},["blocking"]);
+}
+
+
+//function to update the list of blocked sites whenever one is added
+/* function addListener(newUrl){
+    
+    
     chrome.webRequest.onBeforeRequest.addListener(
       function(){ return {cancel: true}; },
       {
         urls: [newUrl]
       },
       ["blocking"]
+      
     );
-}
+} */
