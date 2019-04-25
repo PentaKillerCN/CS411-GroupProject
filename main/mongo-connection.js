@@ -80,8 +80,8 @@ module.exports = {
   getLength : function(uuid, callback){
        var oidd = new mongo.ObjectID(uuid);
        var query = {_id: oidd};
-       var options = {$project: {length:1}};
-      _db.collection("users").findOne(query, options, function(err, result){
+       var options = {projection: {length:1}};
+      _db.collection("users").find(query, options).toArray(function(err, result){
           if (err) throw err;
           return result;
           

@@ -36,12 +36,10 @@ function listEvents(auth, callback) {
     if (err) return console.log('The API returned an error: ' + err);
     const events = res.data.items;
     if (events.length) {
-      console.log('Upcoming 10 events:');
       events.map((event, i) => {
         const start = event.start.dateTime || event.start.date;
         eventsString += `${start} - ${event.summary}`;
         eventsString += `\n`;
-        //console.log(`${start} - ${event.summary}`);
       });
 	    sendResults();
     } else {
@@ -84,7 +82,6 @@ router.post('/getEvents', function(req, res, next) {
         if (err) return getAccessToken(oAuth2Client, callback);
         oAuth2Client.setCredentials(JSON.parse(token));
         callback(oAuth2Client, req.body.searchText, d);
-        //console.log(req.body.searchText);
       });
     }
 
@@ -130,10 +127,6 @@ router.post('/getEvents', function(req, res, next) {
     function listEvents(auth, q, d, callback) {
         eventsString = "";
       const calendar = google.calendar({version: 'v3', auth});
-      //var d = new Date();
-      //d.setMonth(d.getMonth()+1);
-      //console.log("CALENDAR TEST");
-      //console.log(q);
       calendar.events.list({
         calendarId: 'primary',
         timeMin: (new Date()).toISOString(),
@@ -146,12 +139,10 @@ router.post('/getEvents', function(req, res, next) {
         if (err) return console.log('The API returned an error: ' + err);
         const events = res.data.items;
         if (events.length) {
-          console.log('Upcoming 10 events:');
           events.map((event, i) => {
             const start = event.start.dateTime || event.start.date;
             eventsString += `${start} - ${event.summary}`;
             eventsString += '\n';
-            //console.log(`${start} - ${event.summary}`);
           });
             callback();
 
@@ -164,10 +155,8 @@ router.post('/getEvents', function(req, res, next) {
     }
     
     function sendResults(){
-        console.log("SENDRESULTS TEST")
         connection.connectToServer(function (err) {
             connection.getName(req.session.userId, function(err, resName){
-                    //console.log("here" + req.session.userId);
                     if (err) throw err;
                     res.render('main', {events: eventsString, name: resName});
             });
@@ -206,11 +195,9 @@ router.post('/updateAdd', function(req, res, next) {
         
         
         var query = {_id: oid};
-        var newsites = { $push: {sites: req.body.blockText} }; //change this to some sort of append. just sites + req.body.blockText?
-        console.log(req.body.blockText);
+        var newsites = { $push: {sites: req.body.blockText} };
         db.collection("users").updateOne(query, newsites, function(err, result) {
             if (err) throw err;
-            //console.log("1 document updated");
             db.close();
             //displays the updated data
             res.redirect('/getData');
@@ -261,7 +248,6 @@ router.post('/removeAll', function(req, res, next) {
         
         db.collection("users").update(query, deleteQuery, function(err, result) {
             if (err) throw err;
-            console.log("Collection deleted");
             db.close();
             res.redirect('/getData');
         });
@@ -311,7 +297,6 @@ router.post('/login', function(req, res, next) {
             req.session.userId = user._id;
             //get user's name and pass as "name" for use in main.pug
             connection.getName(req.session.userId, function(err, resName){
-                //console.log("here" + req.session.userId);
                 if (err) throw err;
                 res.render('main', {events: "", name: resName});
             });
@@ -356,12 +341,9 @@ router.post('/register', function(req,res,next){
           db.collection("users").findOne({email:req.body.email.toString()}, function(err, result){
               if (err) throw err;
               if (result){
-                  console.log("YUP");
-                  console.log(result.email);
                   res.render('register', {errors: 'Email has been used.'});
               }
               else{
-                  console.log("NOPE");
                   // create object with form input
                   
                   var userData = {
@@ -407,6 +389,16 @@ router.get('/getData', function(req, res, next){
       res.render('blockedSites', {items:result});
     });
   });
+  
+  
+  /* connection.connectToServer(function (err) {
+            connection.getLength(req.session.userId, function(err, resName){
+                    if (err) throw err;
+                    res.render('blockedSites', {hiddens: resName});
+            });
+        });   */
+   
+  
 });
 
 
@@ -429,7 +421,6 @@ router.post('/tologin', function(req, res, next){
 router.get('/main', mid.requiresLogin, function(req, res, next){
     connection.connectToServer(function (err) {
             connection.getName(req.session.userId, function(err, resName){
-                    //console.log("here" + req.session.userId);
                     if (err) throw err;
                     res.render('main', {events: eventsString, name: resName});
             });
@@ -448,7 +439,13 @@ router.post('/focus', function(req, res, next){
 });
 
 router.post('/getdata', function(req, res, next){
-    res.render('blockedSites');
+  /*   connection.connectToServer(function (err) {
+            connection.getLength(req.session.userId, function(err, resName){
+                    if (err) throw err;
+                    res.render('blockedSites', {hiddens: resName});
+            });
+        });   */
+   
 });
 
 //get the amount of time they want to block sites for
@@ -456,21 +453,23 @@ router.post('/getLength', function(req, res, next){
     var glen = (req.body.getlength);
     if (glen == "a week" ){
         var g = new Date();
-        console.log("g: ", g);
         d.setDate(g.getDate()+7); //d is a global variable used in listEvents
-        console.log("d: ", d);
     }
     else if (glen == "two weeks"){
-        d.setDate(d.getDate()+14);
+        var g = new Date();
+        d.setDate(g.getDate()+14);
     }
     else if (glen == "three weeks"){
-        d.setDate(d.getDate()+21);
+        var g = new Date();
+        d.setDate(g.getDate()+21);
     }
     else if (glen == "four weeks"){
-        d.setDate(d.getDate()+28);
+        var g = new Date();
+        d.setDate(g.getDate()+28);
     }
     else if (glen == "forever"){
-        d.setDate(d.getDate()+365);
+        var g = new Date();
+        d.setDate(g.getDate()+365);
     }
    
     

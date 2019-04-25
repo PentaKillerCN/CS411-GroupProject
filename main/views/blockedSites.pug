@@ -18,10 +18,10 @@ head
             document.getElementById("items").innerHTML = local_data;
         }
 
-  
+ 
 
 body(onload='myFunction()')
-    
+    p(hidden='' name='hiddenLength' id='hiddenLength') #{locals.hiddens}
     .card-container4
       .header1
         h3 READY TO FOCUS
@@ -51,7 +51,7 @@ body(onload='myFunction()')
         input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Type site url here to unblock', name='unblockText')
         button.primary1(type='Submit' id='unblock1Button' name='unblock1Button') Delete Site
       form(method='POST', action='/removeAll')
-        button.primary2(type='Submit') Remove All
+        button.primary2(type='Submit' id='removeButton' name='removeButton') Remove All
     pre.
 
     img.bg(src='/stylesheets/b1.jpg', alt='Responsive image')

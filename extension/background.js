@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener(
                 if (request.yess == "hello"){
                     if (today < now.setDate(now.getDate()+7)){
                             console.log("yes");
-                        for (var l=0;l<5;l++){
+                        for (var l=0;l<20;l++){
                             chrome.webRequest.onBeforeRequest.removeListener(callback_named);
                         }
                              

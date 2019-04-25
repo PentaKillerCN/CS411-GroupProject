@@ -3,7 +3,7 @@
 console.log("hello");
 document.addEventListener("DOMContentLoaded", function(){
     var buttonb = document.getElementById('blockButton');
-    var button2 = document.getElementById('unblock1Button');
+    var button2 = document.getElementById('removeButton');
     var items = document.getElementById('items');
     if (buttonb){
         buttonb.addEventListener('click', function() {
