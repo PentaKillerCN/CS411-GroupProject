@@ -3,6 +3,7 @@ var mid = require('../middleware');
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
+let redirect_url = 'http://localhost:3000/callback'
 
 // get mongo connection
 var connection = require('../mongo-connection.js');
@@ -310,11 +311,82 @@ router.post('/login', function(req, res, next) {
     });
 });
 
+/** CONFIGURATION **/
 
-//Post /googlelogin
-router.post('/googlelogin', function(req,res,next){
-    res.render('googlelogin');
+const googleConfig = {
+  clientId: '776197916186-pt74mjq6cet76sid6875tthfs0q6ngsl.apps.googleusercontent.com', // e.g. asdfghjkljhgfdsghjk.apps.googleusercontent.com
+  clientSecret: '4EDA5b-6WyrdPvtpTjNubKO7', // e.g. _ASDFA%DFASDFASDFASD#FAD-
+  redirect: 'http://localhost:3000/main', // this must match your google api settings
+};
+
+const defaultScope = [
+  'https://www.googleapis.com/auth/plus.me',
+  'https://www.googleapis.com/auth/userinfo.email',
+];
+
+/*************/
+/** HELPERS **/
+/*************/
+
+function createConnection() {
+  return new google.auth.OAuth2(
+    googleConfig.clientId,
+    googleConfig.clientSecret,
+    googleConfig.redirect
+  );
+}
+
+function getConnectionUrl(auth) {
+  return auth.generateAuthUrl({
+    access_type: 'offline',
+    prompt: 'consent',
+    scope: defaultScope
+  });
+}
+
+function getGooglePlusApi(auth) {
+  return google.plus({ version: 'v1', auth });
+}
+
+/**********/
+/** MAIN **/
+/**********/
+
+/**
+ * Part 1: Create a Google URL and send to the client to log in the user.
+ */
+function urlGoogle() {
+  const auth = createConnection();
+  const url = getConnectionUrl(auth);
+  return url;
+}
+
+router.post('/googleLogin', function(req,res,next){
+   var url = urlGoogle();
+   console.log(url);
+   //var code= 4/OAG3MEdVWvQV8p2lHyLWjDLFvDmgDxB9OHOGjcu33awwk9pgmWeDaLrvj0lj6ubJJ5d8pMMIqNUPb3bQQEqsJdE&scope=email%20openid%20https://www.googleapis.com/auth/userinfo.email;
+   //var result = getGoogleAccountFromCode(code);
+   //console.log(result);
 });
+
+/**
+ * Part 2: Take the "code" parameter which Google gives us once when the user logs in, then get the user's email and id.
+ */
+function getGoogleAccountFromCode(code) {
+  const data = auth.getToken(code);
+  const tokens = data.tokens;
+  const auth = createConnection();
+  auth.setCredentials(tokens);
+  const plus = getGooglePlusApi(auth);
+  const me = plus.people.get({ userId: 'me' });
+  const userGoogleId = me.data.id;
+  const userGoogleEmail = me.data.emails && me.data.emails.length && me.data.emails[0].value;
+  return {
+    id: userGoogleId,
+    email: userGoogleEmail,
+    tokens: tokens,
+  };
+}
 
 //Get /register
 router.get('/register', mid.loggedOut, function(req,res,next){

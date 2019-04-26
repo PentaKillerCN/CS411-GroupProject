@@ -33,11 +33,7 @@ head
               }
         form(method='POST', action='/register')
           button.btn.btn-dark(type='submit') Sign up
+        form(method='POST', action='/GoogleLogin')
+          button.btn.btn-dark(type='submit') Login with Google
         pre #{errors}
-           .g-signin2(data-onsuccess='onSignIn')
-            .data
-              p Profile Details
-              img#pic.img-circle(width='100', height='100')
-              p Email Address
-              p#email.alert.alert-danger
-              button.btn.btn-danger(onclick='signOut()') SignOut
+        
