@@ -184,6 +184,7 @@ router.post('/update', function(req, res, next) {
 
 
 
+
 //this function is run when the user adds a new site to their blocking list
 router.post('/updateAdd', function(req, res, next) {
 
@@ -429,6 +430,10 @@ router.get('/main', mid.requiresLogin, function(req, res, next){
 });
 router.post('/main', function(req, res, next){
     res.render('main');   
+});
+
+router.post('/about', function(req, res, next){
+    res.render('about');   
 });
 
 router.post('/test', function(req, res, next){
