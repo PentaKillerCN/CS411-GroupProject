@@ -436,6 +436,10 @@ router.post('/about', function(req, res, next){
     res.render('about');   
 });
 
+router.get('/about', function(req, res, next){
+    res.render('about');   
+});
+
 router.post('/test', function(req, res, next){
     res.render('test');
 });
