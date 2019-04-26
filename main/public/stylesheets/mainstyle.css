@@ -73,13 +73,13 @@ li a:hover {
 	width: 400px;
 	/*background-color:rgba(67,67,83,0.75);*/ 
 	/*background-size: contain;*/
-	color: rgb(41, 41, 43);
+	color: white;
 	margin-bottom: 30px;
 	text-align: left;
 }
 
 h3.aboutus{
-	color: rgb(41, 41, 43);
+	color: white;
 	margin-left: 10px;
 	font-size: 
 }
