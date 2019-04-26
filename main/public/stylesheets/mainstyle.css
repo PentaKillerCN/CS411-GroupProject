@@ -596,6 +596,8 @@ button.primary5 {
 
 
 }
+
+
 button.primary5:hover {
 	position: fixed;
 	margin-top: 30px;
@@ -606,7 +608,7 @@ button.primary5:hover {
 	font-family: Montserrat, sans-serif;
 	font-weight: 500;
 	font-size: 20px;
-	padding: 6px 18px;
+	padding: 8px 20px;
 	margin-left: 20px;
 
 	top: 77%;

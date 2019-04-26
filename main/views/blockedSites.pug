@@ -29,8 +29,8 @@ body(onload='myFunction()')
         form(method='POST', action='/updateAdd')
           input#exampleDropdownFormEmail2.form-control(type='text', placeholder='Type site url here to block', name='blockText')
           button#blockButton.primary4(type='Submit', name='blockButton') Add Site
-        h3.four Websites Being Blocked
-          <p><span id="items"></span></p>
+        h3 Websites Being Blocked
+
             form(method='POST', action='/getlength')
                 h6.four Please specify a study period length
                 input(type='text', name='getlength', list='timeperiod')
