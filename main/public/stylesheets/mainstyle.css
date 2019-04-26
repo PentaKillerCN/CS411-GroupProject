@@ -66,6 +66,24 @@ li a:hover {
 	margin-bottom: 30px;
 }
 
+.header-aboutus{
+	border-radius: 8px;
+	padding-top: 30px;
+	height: 100px;
+	width: 400px;
+	/*background-color:rgba(67,67,83,0.75);*/ 
+	/*background-size: contain;*/
+	color: rgb(41, 41, 43);
+	margin-bottom: 30px;
+	text-align: left;
+}
+
+h3.aboutus{
+	color: rgb(41, 41, 43);
+	margin-left: 10px;
+	font-size: 
+}
+
 
 h3{
 	color: rgb(41, 41, 43);
@@ -150,6 +168,13 @@ p {
 	color:black;
 }
 
+p.aboutus {
+	font-size: 18px;
+	line-height: 21px;
+	color:black;
+	margin-left: 10px;
+}
+
 
 
 .card-container1 {
@@ -167,6 +192,23 @@ p {
 	top:20%;
 
 
+
+
+}
+
+.aboutus-container {
+	background-color: rgba(255,255,255,0.8);
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+	color: #B3B8CD;
+
+	position: fixed;
+	width: 1200px;
+	height: 500px;
+	max-width: 100%;
+	text-align: left;
+	margin-left: 40px;
+	top:20%;
 
 
 }
