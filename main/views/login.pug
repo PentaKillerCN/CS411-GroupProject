@@ -33,7 +33,9 @@ head
               }
         form(method='POST', action='/register')
           button.btn.btn-dark(type='submit') Sign up
-        form(method='POST', action='/GoogleLogin')
+        form(method='POST', action='#{locals.url}')
           button.btn.btn-dark(type='submit') Login with Google
+          
+        a(href='' id ='topopulate') Google Login
         pre #{errors}
         

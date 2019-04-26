@@ -352,18 +352,11 @@ function getGooglePlusApi(auth) {
 /** MAIN **/
 /**********/
 
-/**
- * Part 1: Create a Google URL and send to the client to log in the user.
- */
-function urlGoogle() {
-  const auth = createConnection();
-  const url = getConnectionUrl(auth);
-  return url;
-}
 
 router.post('/googleLogin', function(req,res,next){
-   var url = urlGoogle();
-   console.log(url);
+   
+   
+   //console.log(url);
    //var code= 4/OAG3MEdVWvQV8p2lHyLWjDLFvDmgDxB9OHOGjcu33awwk9pgmWeDaLrvj0lj6ubJJ5d8pMMIqNUPb3bQQEqsJdE&scope=email%20openid%20https://www.googleapis.com/auth/userinfo.email;
    //var result = getGoogleAccountFromCode(code);
    //console.log(result);
@@ -486,10 +479,29 @@ router.get('/exmongo', function(req,res,next){
 
 
 router.post('/tologin', function(req, res, next){
-    res.render('login');
+    var myurl = urlGoogle(function(myurl){
+           
+           res.render('login', {url : myurl}); 
+        
+    });
+
     //res.render('test');    
    
 });
+
+
+
+/**
+ * Part 1: Create a Google URL and send to the client to log in the user.
+ */
+function urlGoogle(callback) {
+  const auth = createConnection();
+  const url = getConnectionUrl(auth);
+  callback(url);
+}
+
+
+
 
 router.get('/main', mid.requiresLogin, function(req, res, next){
     connection.connectToServer(function (err) {
